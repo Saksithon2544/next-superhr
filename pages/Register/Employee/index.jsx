@@ -11,7 +11,7 @@ import ConfirmInfo from '../../ConfirmInfoRegister/Employee';
 // CSS
 import styles from './RegisterEmployee.module.css';
 
-function Register1Employee() {
+function Employee1() {
   const [step, setStep] = useState(1);
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [formData, setFormData] = useState({});
@@ -175,4 +175,4 @@ function Register1Employee() {
   );
 }
 
-export default Register1Employee;
+export default Employee1;

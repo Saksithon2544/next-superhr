@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 
-const Register4Employee = ({ onNext, formData, setFormData }) => {
+const Employee4 = ({ onNext, formData, setFormData }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -144,4 +144,4 @@ const Register4Employee = ({ onNext, formData, setFormData }) => {
   );
 };
 
-export default Register4Employee;
+export default Employee4;

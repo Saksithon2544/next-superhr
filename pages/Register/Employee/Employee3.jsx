@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 
-const Register3Employee = ({ onNext }) => {
+const Employee3 = ({ onNext }) => {
 
   const [formData, setFormData] = useState({
     idAddress: '',
@@ -511,4 +511,4 @@ const Register3Employee = ({ onNext }) => {
 
 };
 
-export default Register3Employee;
+export default Employee3;
