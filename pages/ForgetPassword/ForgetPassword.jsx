@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
-import { Link, useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/router';
 import { isEmail } from 'validator';
 import Swal from 'sweetalert2';
 
@@ -12,7 +12,7 @@ import './ForgetPassword.css';
 
 const ForgetPassword = () => {
   const [email, setEmail] = useState('');
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -38,7 +38,7 @@ const ForgetPassword = () => {
     });
 
     // Navigate to the designated page
-    navigate('/verify-enter-code');
+    router.push('/verify-enter-code');
 
   };
 
