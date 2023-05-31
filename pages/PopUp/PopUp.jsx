@@ -13,21 +13,21 @@
  **********************************************************************/
 
 import React from 'react';
-import VectorImage from 'src/assets/images/popup_Vector.png';
-import Vector1Image from 'src/assets/images/popup_Vector_1.png';
-import Vector2Image from 'src/assets/images/popup_Vector_2.png';
-import Vector3Image from 'src/assets/images/popup_Vector_3.png';
-import Line6Image from 'src/assets/images/popup_Line_6.png';
-import Line7Image from 'src/assets/images/popup_Line_7.png';
-import Vector4Image from 'src/assets/images/popup_Vector_4.png';
-import Vector5Image from 'src/assets/images/popup_Vector_5.png';
-import Vector6Image from 'src/assets/images/popup_Vector_6.png';
-import Vector7Image from 'src/assets/images/popup_Vector_7.png';
-import Vector8Image from 'src/assets/images/popup_Vector_8.png';
-import Vector9Image from 'src/assets/images/popup_Vector_9.png';
-import Vector10Image from 'src/assets/images/popup_Vector_10.png';
-import Vector11Image from 'src/assets/images/popup_Vector_11.png';
-import Image8Image from 'src/assets/images/popup_image_8.png';
+import VectorImage from '../../src/images/popup_Vector.png';
+import Vector1Image from '../../src/images/popup_Vector_1.png';
+import Vector2Image from '../../src/images/popup_Vector_2.png';
+import Vector3Image from '../../src/images/popup_Vector_3.png';
+import Line6Image from '../../src/images/popup_Line_6.png';
+import Line7Image from '../../src/images/popup_Line_7.png';
+import Vector4Image from '../../src/images/popup_Vector_4.png';
+import Vector5Image from '../../src/images/popup_Vector_5.png';
+import Vector6Image from '../../src/images/popup_Vector_6.png';
+import Vector7Image from '../../src/images/popup_Vector_7.png';
+import Vector8Image from '../../src/images/popup_Vector_8.png';
+import Vector9Image from '../../src/images/popup_Vector_9.png';
+import Vector10Image from '../../src/images/popup_Vector_10.png';
+import Vector11Image from '../../src/images/popup_Vector_11.png';
+import Image8Image from '../../src/images/popup_image_8.png';
 import { styled } from '@mui/material/styles';
 
 const PopUp1 = styled('div')({

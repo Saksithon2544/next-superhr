@@ -13,15 +13,15 @@
  **********************************************************************/
 
 import React from 'react';
-import VectorImage from 'src/assets/images/popupuploadfile_Vector.png';
-import Vector1Image from 'src/assets/images/popupuploadfile_Vector_1.png';
-import Vector2Image from 'src/assets/images/popupuploadfile_Vector_2.png';
-import Vector3Image from 'src/assets/images/popupuploadfile_Vector_3.png';
-import Vector4Image from 'src/assets/images/popupuploadfile_Vector_4.png';
-import Vector5Image from 'src/assets/images/popupuploadfile_Vector_5.png';
-import Vector6Image from 'src/assets/images/popupuploadfile_Vector_6.png';
-import Vector7Image from 'src/assets/images/popupuploadfile_Vector_7.png';
-import Vector8Image from 'src/assets/images/popupuploadfile_Vector_8.png';
+import VectorImage from '../../src/images/popupuploadfile_Vector.png';
+import Vector1Image from '../../src/images/popupuploadfile_Vector_1.png';
+import Vector2Image from '../../src/images/popupuploadfile_Vector_2.png';
+import Vector3Image from '../../src/images/popupuploadfile_Vector_3.png';
+import Vector4Image from '../../src/images/popupuploadfile_Vector_4.png';
+import Vector5Image from '../../src/images/popupuploadfile_Vector_5.png';
+import Vector6Image from '../../src/images/popupuploadfile_Vector_6.png';
+import Vector7Image from '../../src/images/popupuploadfile_Vector_7.png';
+import Vector8Image from '../../src/images/popupuploadfile_Vector_8.png';
 import { styled } from '@mui/material/styles';
 
 const PopUpUploadFile1 = styled('div')({
