@@ -1,0 +1,19 @@
+.custom-form {
+    background-color: #F2F5FF;
+    border-radius: 10px;
+}
+
+.custom-form-group {
+    margin-top: 20px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.custom-button {
+    margin-top: 20px;
+    margin-left: 50px;
+    margin-right: 50px;
+    padding-bottom: 30px;
+    text-align: center;
+}
+  

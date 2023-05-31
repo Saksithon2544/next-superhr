@@ -5,7 +5,7 @@ export default function about() {
 
   async function getPosts() {
     try {
-      const res = await axios.get('/api/user')
+      const res = await axios.get(`/api/user`)
       const data = await res.data
 
       console.log(data)
