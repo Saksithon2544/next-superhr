@@ -3,7 +3,6 @@ import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import Swal from 'sweetalert2';
 import { useRouter } from 'next/router';
 import axios from 'axios';
-// import { API_BASE_URL } from '../../config';
 
 // Image
 import logo from '../../src/images/Logo.png';
@@ -20,9 +19,11 @@ const VerifyEnterCode = () => {
     event.preventDefault();
   
     try {
-      const { code: sentCode } = location.state;
+      const { code: sentCode, email } = router.query;
   
-      const response = await axios.post(`${API_BASE_URL}/api/verify-code`, { code: sentCode, codeValue: codeValue });
+      const response = await axios.post(`/api/verifycode`, { code: sentCode, codeValue: codeValue, email });
+
+     
   
       if (response.data.success === true) {
         // Code is verified, show success message

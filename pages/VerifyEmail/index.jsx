@@ -3,7 +3,6 @@ import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import Swal from 'sweetalert2';
 import { useRouter } from 'next/router';
 import axios from 'axios';
-// import { API_BASE_URL } from '../../config';
 
 // Image
 import logo from '../../src/images/Logo.png';
@@ -15,19 +14,21 @@ const VerifyEmail = () => {
   const [email, setEmail] = useState('');
   const router = useRouter();
 
-
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
       // Send a request to the server to send the verification code
-      const response = await axios.post(`${API_BASE_URL}/api/send-verification-code`, { email });
+      const response = await axios.post(`/api/verificationcode/send-verification-code`, { email }); 
 
       if (response.status === 200) {
         const { code } = response.data;
 
         // Redirect to the verify-enter-code page with email and code as parameters
-        router.push('/VerifyEnterCode', { state: { email, code }});
+        router.push({
+          pathname: '/VerifyEnterCode',
+          query: { email, code },
+        });
       }
     } catch (error) {
       console.log(error);
