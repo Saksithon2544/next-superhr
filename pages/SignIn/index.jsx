@@ -38,7 +38,7 @@ const SignIn = () => {
           title: 'Success',
           text: 'Login successfully',
         });
-        router.push('/home');
+        router.push('/Home');
       }
     }
     catch (error) {
