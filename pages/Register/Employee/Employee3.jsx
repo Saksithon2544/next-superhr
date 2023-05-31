@@ -96,13 +96,13 @@ const Register3Employee = ({ onNext }) => {
   return (
     <div>
       <br />
-      <Form className="custom-form" onSubmit={handleSubmit}>
+      <Form className={styles.custom_form} onSubmit={handleSubmit}>
         <br />
-        <h5 className="text-start custom-form-group">Social security fund detail</h5>
-        <h5 className="text-start custom-form-group">SSF Detail</h5>
+        <h5 className={`text-start ${styles.custom_form_group}`}>Social security fund detail</h5>
+        <h5 className={`text-start ${styles.custom_form_group}`}>SSF Detail</h5>
 
-        <p className="text-start custom-form-group mt-4">Payment by</p>
-        <Form.Group className="custom-form-group" controlId="paymentType">
+        <p className={`text-start ${styles.custom_form_group} mt-4`}>Payment by</p>
+        <Form.Group className={styles.custom_form_group} controlId="paymentType">
           <Form.Check
             inline
             label="Self-pay"
@@ -124,7 +124,7 @@ const Register3Employee = ({ onNext }) => {
 
         {formData.socialSecurity.selfPay && (
           <>
-            <Form.Group className="custom-form-group" controlId="type">
+            <Form.Group className={styles.custom_form_group} controlId="type">
               <Form.Label>Type</Form.Label>
               <Form.Control
                 as="select"
@@ -138,9 +138,9 @@ const Register3Employee = ({ onNext }) => {
               </Form.Control>
             </Form.Group>
 
-            <h5 className="text-start custom-form-group mt-4">Tax Detail</h5>
-            <p className="text-start custom-form-group">For non-ssf payment. your tax will be deducted with below chosen type</p>
-            <Form.Group className="custom-form-group" controlId="pnd3">
+            <h5 className={`text-start ${styles.custom_form_group} mt-4`}>Tax Detail</h5>
+            <p className={`text-start ${styles.custom_form_group}`}>For non-ssf payment. your tax will be deducted with below chosen type</p>
+            <Form.Group className={styles.custom_form_group} controlId="pnd3">
               <Form.Check
                 inline
                 label="P.N.D 3"
@@ -151,7 +151,7 @@ const Register3Employee = ({ onNext }) => {
               />
             </Form.Group>
 
-            <Form.Group className="custom-form-group" controlId="vat7">
+            <Form.Group className={styles.custom_form_group} controlId="vat7">
               <Form.Check
                 inline
                 label="VAT 7%"
@@ -162,7 +162,7 @@ const Register3Employee = ({ onNext }) => {
               />
             </Form.Group>
 
-            <Form.Group className="custom-form-group" controlId="pnd53">
+            <Form.Group className={styles.custom_form_group} controlId="pnd53">
               < Form.Check
                 inline
                 label="P.N.D 53"
@@ -173,7 +173,7 @@ const Register3Employee = ({ onNext }) => {
               />
             </Form.Group>
 
-            <Form.Group className="custom-form-group" controlId="companyName">
+            <Form.Group className={styles.custom_form_group} controlId="companyName">
               <Form.Label>Company Name</Form.Label>
               <Form.Control
                 type="text"
@@ -184,7 +184,7 @@ const Register3Employee = ({ onNext }) => {
               />
             </Form.Group>
 
-            <Form.Group className="custom-form-group" controlId="registrationNumber">
+            <Form.Group className={styles.custom_form_group} controlId="registrationNumber">
               <Form.Label>Registration Number</Form.Label>
               <Form.Control
                 type="text"
@@ -195,7 +195,7 @@ const Register3Employee = ({ onNext }) => {
               />
             </Form.Group>
 
-            <Form.Group className="custom-form-group" controlId="registrationAddress">
+            <Form.Group className={styles.custom_form_group} controlId="registrationAddress">
               <Form.Label>Registration Address</Form.Label>
               <Form.Control
                 type="text"
@@ -210,7 +210,7 @@ const Register3Employee = ({ onNext }) => {
 
         {formData.socialSecurity.companyPay && (
           <>
-            <Form.Group className="custom-form-group" controlId="joiningDate">
+            <Form.Group className={styles.custom_form_group} controlId="joiningDate">
               <Form.Label>Joining Date</Form.Label>
               <Form.Control
                 type="date"
@@ -220,9 +220,9 @@ const Register3Employee = ({ onNext }) => {
               />
             </Form.Group>
 
-            <p className="custom-form-group">Hospital</p>
+            <p className={styles.custom_form_group}>Hospital</p>
 
-            <Form.Group className="custom-form-group" controlId="hospitalMember">
+            <Form.Group className={styles.custom_form_group} controlId="hospitalMember">
               <Form.Check
                 inline
                 label="Member with"
@@ -233,7 +233,7 @@ const Register3Employee = ({ onNext }) => {
               />
             </Form.Group>
 
-            <Form.Group className="custom-form-group" controlId="hospital">
+            <Form.Group className={styles.custom_form_group} controlId="hospital">
               <Form.Control
                 type="text"
                 name="hospital"
@@ -243,7 +243,7 @@ const Register3Employee = ({ onNext }) => {
               />
             </Form.Group>
 
-            <Form.Group className="custom-form-group" controlId="changeHospital">
+            <Form.Group className={styles.custom_form_group} controlId="changeHospital">
               <Form.Check
                 inline
                 label="Change Hospital/Non-member"
@@ -257,7 +257,7 @@ const Register3Employee = ({ onNext }) => {
             {/* Additional hospital information fields */}
             {formData.socialSecurity.changeHospital && (
               <>
-                <Form.Group className="custom-form-group" controlId="changeHospita_1">
+                <Form.Group className={styles.custom_form_group} controlId="changeHospita_1">
                   <Form.Control
                     type="text"
                     placeholder="1."
@@ -267,7 +267,7 @@ const Register3Employee = ({ onNext }) => {
                   />
                 </Form.Group>
 
-                <Form.Group className="custom-form-group" controlId="changeHospita_2">
+                <Form.Group className={styles.custom_form_group} controlId="changeHospita_2">
                   <Form.Control
                     type="text"
                     placeholder="2."
@@ -277,7 +277,7 @@ const Register3Employee = ({ onNext }) => {
                   />
                 </Form.Group>
 
-                <Form.Group className="custom-form-group" controlId="changeHospita_3">
+                <Form.Group className={styles.custom_form_group} controlId="changeHospita_3">
                   <Form.Control
                     type="text"
                     placeholder="3."
@@ -290,9 +290,9 @@ const Register3Employee = ({ onNext }) => {
             )}
 
 
-            <h5 className="text-start custom-form-group mt-5">TAX Detail</h5>
+            <h5 className={`text-start ${styles.custom_form_group} mt-5`}>TAX Detail</h5>
 
-            <Form.Group className="custom-form-group" controlId="taxDetails">
+            <Form.Group className={styles.custom_form_group} controlId="taxDetails">
               <Form.Label>Income before joining</Form.Label>
               <Form.Control
                 type="number"
@@ -303,7 +303,7 @@ const Register3Employee = ({ onNext }) => {
               />
             </Form.Group>
 
-            <Form.Group className="custom-form-group" controlId="withholdingTax">
+            <Form.Group className={styles.custom_form_group} controlId="withholdingTax">
               <Form.Label>Withholding tax before joining</Form.Label>
               <Form.Control
                 type="number"
@@ -314,7 +314,7 @@ const Register3Employee = ({ onNext }) => {
               />
             </Form.Group>
 
-            <Form.Group className="custom-form-group" controlId="marriedFullName">
+            <Form.Group className={styles.custom_form_group} controlId="marriedFullName">
               <Form.Label>Married Full Name</Form.Label>
               <Form.Control
                 type="text"
@@ -325,7 +325,7 @@ const Register3Employee = ({ onNext }) => {
               />
             </Form.Group>
 
-            <Form.Group className="custom-form-group" controlId="children">
+            <Form.Group className={styles.custom_form_group} controlId="children">
               <Form.Label>Children (Age 1-20 years, Born after year 2018)</Form.Label>
               <Form.Control
                 type="text"
@@ -336,8 +336,8 @@ const Register3Employee = ({ onNext }) => {
               />
             </Form.Group>
 
-            <p className="custom-form-group">Parents</p>
-            <Form.Group className="custom-form-group" controlId="parents">
+            <p className={styles.custom_form_group}>Parents</p>
+            <Form.Group className={styles.custom_form_group} controlId="parents">
               <Form.Check
                 inline
                 label="Father"
@@ -376,7 +376,7 @@ const Register3Employee = ({ onNext }) => {
 
             </Form.Group>
 
-            <Form.Group className="custom-form-group" controlId="disabledPerson">
+            <Form.Group className={styles.custom_form_group} controlId="disabledPerson">
               <Form.Label>Disabled Person</Form.Label>
               <Form.Control
                 type="text"
@@ -387,7 +387,7 @@ const Register3Employee = ({ onNext }) => {
               />
             </Form.Group>
 
-            <Form.Group className="custom-form-group" controlId="lifeInsurance">
+            <Form.Group className={styles.custom_form_group} controlId="lifeInsurance">
               <Form.Label>Life insurance and Endowment (100,000 THB)</Form.Label>
               <Form.Control
                 type="text"
@@ -398,7 +398,7 @@ const Register3Employee = ({ onNext }) => {
               />
             </Form.Group>
 
-            <Form.Group className="custom-form-group" controlId="healthInsurance">
+            <Form.Group className={styles.custom_form_group} controlId="healthInsurance">
               <Form.Label>Health insurance / Accident (25,000 THB)</Form.Label>
               <Form.Control
                 type="text"
@@ -409,7 +409,7 @@ const Register3Employee = ({ onNext }) => {
               />
             </Form.Group>
 
-            <Form.Group className="custom-form-group" controlId="parentsLifeInsurance">
+            <Form.Group className={styles.custom_form_group} controlId="parentsLifeInsurance">
               <Form.Label>Parents life insurance (15,000 THB)</Form.Label>
               <Form.Control
                 type="text"
@@ -420,7 +420,7 @@ const Register3Employee = ({ onNext }) => {
               />
             </Form.Group>
 
-            <Form.Group className="custom-form-group" controlId="annuityInsurance">
+            <Form.Group className={styles.custom_form_group} controlId="annuityInsurance">
               <Form.Label>Annuity insurance (15% of income / 200,000 THB)</Form.Label>
               <Form.Control
                 type="text"
@@ -431,7 +431,7 @@ const Register3Employee = ({ onNext }) => {
               />
             </Form.Group>
 
-            <Form.Group className="custom-form-group" controlId="rmf">
+            <Form.Group className={styles.custom_form_group} controlId="rmf">
               <Form.Label>RMF (30% of Net income / 500,000 THB)</Form.Label>
               <Form.Control
                 type="text"
@@ -442,7 +442,7 @@ const Register3Employee = ({ onNext }) => {
               />
             </Form.Group>
 
-            <Form.Group className="custom-form-group" controlId="ssf">
+            <Form.Group className={styles.custom_form_group} controlId="ssf">
               <Form.Label>SSF Super saving fund (30% of Net income / 200,000 THB)</Form.Label>
               <Form.Control
                 type="text"
@@ -453,7 +453,7 @@ const Register3Employee = ({ onNext }) => {
               />
             </Form.Group>
 
-            <Form.Group className="custom-form-group" controlId="providentFund">
+            <Form.Group className={styles.custom_form_group} controlId="providentFund">
               <Form.Label>Provident fund PVD (15% of Net income / 500,000 THB)</Form.Label>
               <Form.Control
                 type="text"
@@ -464,7 +464,7 @@ const Register3Employee = ({ onNext }) => {
               />
             </Form.Group>
 
-            <Form.Group className="custom-form-group" controlId="donation1">
+            <Form.Group className={styles.custom_form_group} controlId="donation1">
               <Form.Label>Donation</Form.Label>
               <Form.Control
                 type="text"
@@ -475,7 +475,7 @@ const Register3Employee = ({ onNext }) => {
               />
             </Form.Group>
 
-            <Form.Group className="custom-form-group" controlId="donation2">
+            <Form.Group className={styles.custom_form_group} controlId="donation2">
               <Form.Control
                 type="text"
                 placeholder="Donation 2"
@@ -485,7 +485,7 @@ const Register3Employee = ({ onNext }) => {
               />
             </Form.Group>
 
-            <Form.Group className="custom-form-group" controlId="donation3">
+            <Form.Group className={styles.custom_form_group} controlId="donation3">
               <Form.Control
                 type="text"
                 placeholder="Donation 3"
@@ -500,7 +500,7 @@ const Register3Employee = ({ onNext }) => {
 
 
 
-        <Form.Group className="custom-button">
+        <Form.Group className={styles.custom_button}>
           <Button className="primary col-12" type="submit">
             Next
           </Button>

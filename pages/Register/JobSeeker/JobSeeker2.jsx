@@ -26,9 +26,9 @@ const Register2JobSeeker = ({ onNext, formData, setFormData }) => {
   return (
     <div>
       <br />
-      <Form className="custom-form" onSubmit={handleSubmit}>
+      <Form className={styles.custom_form} onSubmit={handleSubmit}>
         <br />
-        <Form.Group className="custom-form-group" controlId="idAddress">
+        <Form.Group className={styles.custom_form_group} controlId="idAddress">
           <Form.Label>ID (House registration) Address<span className="text-danger"> *</span></Form.Label>
           <Form.Control
             type="text"
@@ -40,7 +40,7 @@ const Register2JobSeeker = ({ onNext, formData, setFormData }) => {
           />
         </Form.Group>
 
-        <Form.Group className="custom-form-group" controlId="currentAddress">
+        <Form.Group className={styles.custom_form_group} controlId="currentAddress">
           <Form.Label>Current Address<span className="text-danger"> *</span></Form.Label>
           <Form.Control
             as={"textarea"}
@@ -52,7 +52,7 @@ const Register2JobSeeker = ({ onNext, formData, setFormData }) => {
           />
         </Form.Group>
 
-        <Form.Group className="custom-form-group" controlId="email">
+        <Form.Group className={styles.custom_form_group} controlId="email">
           <Form.Label>Email<span className="text-danger"> *</span></Form.Label>
           <Form.Control
             type="email"
@@ -64,7 +64,7 @@ const Register2JobSeeker = ({ onNext, formData, setFormData }) => {
           />
         </Form.Group>
 
-        <Form.Group className="custom-form-group" controlId="phoneNumber">
+        <Form.Group className={styles.custom_form_group} controlId="phoneNumber">
           <Form.Label>Phone Number<span className="text-danger"> *</span></Form.Label>
           <Form.Control
             type="tel"
@@ -77,7 +77,7 @@ const Register2JobSeeker = ({ onNext, formData, setFormData }) => {
         </Form.Group>
 
         <br />
-        <Form.Group className="custom-button">
+        <Form.Group className={styles.custom_button}>
           <Button className="primary col-12" type="submit">
             Next
           </Button>

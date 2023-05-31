@@ -44,13 +44,13 @@ const Register4Employee = ({ onNext, formData, setFormData }) => {
   return (
     <div>
       <br />
-      <Form className="custom-form" onSubmit={handleSubmit}>
+      <Form className={styles.custom_form} onSubmit={handleSubmit}>
         <br />
-        <h5 className="custom-form-group text-start">Please upload your documents</h5>
-        <p className="custom-form-group text-danger">file should be png, jpg or pdf.</p>
+        <h5 className={`${styles.custom_form_group} text-start`}>Please upload your documents</h5>
+        <p className={`${styles.custom_form_group} text-danger`}>file should be png, jpg or pdf.</p>
         <br />
 
-        <Form.Group className="custom-form-group" controlId="resumeCv">
+        <Form.Group className={styles.custom_form_group} controlId="resumeCv">
           <Form.Label>Resume / CV<span className="text-danger"> *</span></Form.Label>
           <Form.Control
             type="file"
@@ -62,7 +62,7 @@ const Register4Employee = ({ onNext, formData, setFormData }) => {
           />
         </Form.Group>
 
-        <Form.Group className="custom-form-group" controlId="coverLetter">
+        <Form.Group className={styles.custom_form_group} controlId="coverLetter">
           <Form.Label>Cover Letter<span className="text-danger"> *</span></Form.Label>
           <Form.Control
             type="file"
@@ -74,7 +74,7 @@ const Register4Employee = ({ onNext, formData, setFormData }) => {
           />
         </Form.Group>
 
-        <Form.Group className="custom-form-group" controlId="transcript">
+        <Form.Group className={styles.custom_form_group} controlId="transcript">
           <Form.Label>Transcript<span className="text-danger"> *</span></Form.Label>
           <Form.Control
             type="file"
@@ -86,7 +86,7 @@ const Register4Employee = ({ onNext, formData, setFormData }) => {
           />
         </Form.Group>
 
-        <Form.Group className="custom-form-group" controlId="certificate">
+        <Form.Group className={styles.custom_form_group} controlId="certificate">
           <Form.Label>Certificate (optional)</Form.Label>
           <Form.Control
             type="file"
@@ -97,7 +97,7 @@ const Register4Employee = ({ onNext, formData, setFormData }) => {
           />
         </Form.Group>
 
-        <Form.Group className="custom-form-group" controlId="houseRegistration">
+        <Form.Group className={styles.custom_form_group} controlId="houseRegistration">
           <Form.Label>House Registration<span className="text-danger"> *</span></Form.Label>
           <Form.Control
             type="file"
@@ -109,7 +109,7 @@ const Register4Employee = ({ onNext, formData, setFormData }) => {
           />
         </Form.Group>
 
-        <Form.Group className="custom-form-group" controlId="idCard">
+        <Form.Group className={styles.custom_form_group} controlId="idCard">
           <Form.Label>ID Card<span className="text-danger"> *</span></Form.Label>
           <Form.Control
             type="file"
@@ -121,7 +121,7 @@ const Register4Employee = ({ onNext, formData, setFormData }) => {
           />
         </Form.Group>
 
-        <Form.Group className="custom-form-group" controlId="photoPersonal">
+        <Form.Group className={styles.custom_form_group} controlId="photoPersonal">
           <Form.Label>Photo (Personal)<span className="text-danger"> *</span></Form.Label>
           <Form.Control
             type="file"
@@ -134,7 +134,7 @@ const Register4Employee = ({ onNext, formData, setFormData }) => {
         </Form.Group>
 
         <br />
-        <Form.Group className="custom-button">
+        <Form.Group className={styles.custom_button}>
           <Button className="primary col-12" type="submit">
             Next
           </Button>

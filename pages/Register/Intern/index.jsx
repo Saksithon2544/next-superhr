@@ -9,7 +9,7 @@ import Intern4 from './Intern4';
 import ConfirmInfo from '../../ConfirmInfoRegister/Intern';
 
 // CSS
-import './RegisterIntern.css';
+import styles from './RegisterIntern.module.css';
 
 function RegisterIntern() {
   const [step, setStep] = useState(1);
@@ -66,42 +66,42 @@ function RegisterIntern() {
         {step === 1 && (
           <div>
             <br />
-            <Form className="custom-form" onSubmit={handleSubmit(onSubmit)}>
+            <Form className={styles.custom_form} onSubmit={handleSubmit(onSubmit)}>
               <br />
-              <h5 className="text-start custom-form-group">Personal details</h5>
-              <Form.Group className="custom-form-group" controlId="prefix">
+              <h5 className={`text-start ${styles.custom_form_group}`}>Personal details</h5>
+              <Form.Group className={styles.custom_form_group} controlId="prefix">
                 <Form.Label>Prefix<span className="text-danger"> *</span></Form.Label>
                 <Form.Control type="text" placeholder="Mr. / Ms." {...register('prefix')} />
               </Form.Group>
 
-              <Form.Group className="custom-form-group" controlId="fullNameThai">
+              <Form.Group className={styles.custom_form_group} controlId="fullNameThai">
                 <Form.Label>Full name (Thai name)<span className="text-danger"> *</span></Form.Label>
                 <Form.Control type="text" placeholder="Thai name" {...register('fullNameThai')} />
               </Form.Group>
 
-              <Form.Group className="custom-form-group" controlId="fullNameEng">
+              <Form.Group className={styles.custom_form_group} controlId="fullNameEng">
                 <Form.Label>Full name (English name)<span className="text-danger"> *</span></Form.Label>
                 <Form.Control type="text" placeholder="English name" {...register('fullNameEng')} />
               </Form.Group>
 
-              <Form.Group className="custom-form-group" controlId="idNumber">
+              <Form.Group className={styles.custom_form_group} controlId="idNumber">
                 <Form.Label>ID number/ID Passport<span className="text-danger"> *</span></Form.Label>
                 <Form.Control type="text" placeholder="ID number/ID Passport" {...register('idNumber')} />
               </Form.Group>
 
-              <Form.Group className="custom-form-group" controlId="gender">
+              <Form.Group className={styles.custom_form_group} controlId="gender">
                 <Form.Label>Gender<span className="text-danger"> *</span></Form.Label> <br />
                 <Form.Check inline label="Female" type="radio" name="gender" value={"Female"} {...register('gender')} />
                 <Form.Check inline label="Male" type="radio" name="gender" value={"Male"} {...register('gender')} />
                 <Form.Check inline label="LGBTQIA+" type="radio" name="gender" value={"LGBTQIA+"} {...register('gender')} />
               </Form.Group>
 
-              <Form.Group className="custom-form-group" controlId="birthday">
+              <Form.Group className={styles.custom_form_group} controlId="birthday">
                 <Form.Label>Date of birth<span className="text-danger"> *</span></Form.Label>
                 <Form.Control type="date" placeholder="DD/MM/YYYY"  {...register('birthday')} />
               </Form.Group>
 
-              <Form.Group className="custom-form-group" controlId="maritalStatus">
+              <Form.Group className={styles.custom_form_group} controlId="maritalStatus">
                 <Form.Label>Marital status<span className="text-danger"> *</span></Form.Label> <br />
                 <Form.Check inline label="Single" type="radio" name="maritalStatus" value={"Single"} {...register('maritalStatus')} />
                 <Form.Check inline label="Married" type="radio" name="maritalStatus" value={"Married"} {...register('maritalStatus')} />
@@ -109,7 +109,7 @@ function RegisterIntern() {
                 <Form.Check inline label="Widowed" type="radio" name="maritalStatus" value={"Widowed"} {...register('maritalStatus')} />
               </Form.Group>
 
-              <Form.Group className="custom-form-group" controlId="religion">
+              <Form.Group className={styles.custom_form_group} controlId="religion">
                 <Form.Label>Religion</Form.Label>
                 <Form.Control as="select" defaultValue={""} {...register('religion')}>
                   <option value={""} disabled>Select religion</option>
@@ -123,7 +123,7 @@ function RegisterIntern() {
                 </Form.Control>
               </Form.Group>
 
-              <Form.Group className="custom-form-group" controlId="nationality">
+              <Form.Group className={styles.custom_form_group} controlId="nationality">
                 <Form.Label>Nationality</Form.Label>
                 <Form.Control as="select" defaultValue={""} {...register('nationality')}>
                   <option value="" disabled>Select nationality</option>

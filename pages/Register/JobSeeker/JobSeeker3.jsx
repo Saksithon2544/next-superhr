@@ -46,12 +46,12 @@ const Register3JobSeeker = ({ onNext, formData, setFormData }) => {
   return (
     <div>
       <br />
-      <Form className="custom-form" onSubmit={handleSubmit}>
+      <Form className={styles.custom_form} onSubmit={handleSubmit}>
         <br />
 
         {/* Education Section */}
-        <h5 className="text-start custom-form-group">Education</h5>
-        <Form.Group className="custom-form-group" controlId="university">
+        <h5 className={`text-start ${styles.custom_form_group}`}>Education</h5>
+        <Form.Group className={styles.custom_form_group} controlId="university">
           <Form.Label>University<span className="text-danger"> *</span></Form.Label>
           <Form.Control
             type="text"
@@ -63,7 +63,7 @@ const Register3JobSeeker = ({ onNext, formData, setFormData }) => {
           />
         </Form.Group>
 
-        <Form.Group className="custom-form-group" controlId="educationLevel">
+        <Form.Group className={styles.custom_form_group} controlId="educationLevel">
           <Form.Label>Education Level<span className="text-danger"> *</span></Form.Label>
           <Form.Control
             as="select"
@@ -81,7 +81,7 @@ const Register3JobSeeker = ({ onNext, formData, setFormData }) => {
         </Form.Group>
 
 
-        <Form.Group className="custom-form-group" controlId="major">
+        <Form.Group className={styles.custom_form_group} controlId="major">
           <Form.Label>Major<span className="text-danger"> *</span></Form.Label>
           <Form.Control
             type="text"
@@ -93,7 +93,7 @@ const Register3JobSeeker = ({ onNext, formData, setFormData }) => {
           />
         </Form.Group>
 
-        <Form.Group className="custom-form-group" controlId="field">
+        <Form.Group className={styles.custom_form_group} controlId="field">
           <Form.Label>Field<span className="text-danger"> *</span></Form.Label>
           <Form.Control
             as={"textarea"}
@@ -105,7 +105,7 @@ const Register3JobSeeker = ({ onNext, formData, setFormData }) => {
           />
         </Form.Group>
 
-        <Form.Group className="custom-form-group" controlId="GPA">
+        <Form.Group className={styles.custom_form_group} controlId="GPA">
           <Form.Label>GPA<span className="text-danger"> *</span></Form.Label>
           <Form.Control
             type="text"
@@ -118,8 +118,8 @@ const Register3JobSeeker = ({ onNext, formData, setFormData }) => {
         </Form.Group>
 
         {/* Application Section */}
-        <h5 className="text-start custom-form-group">Application</h5>
-        <Form.Group className="custom-form-group" controlId="position">
+        <h5 className={`text-start ${styles.custom_form_group}`}>Application</h5>
+        <Form.Group className={styles.custom_form_group} controlId="position">
           <Form.Label>Position<span className="text-danger"> *</span></Form.Label>
           <Form.Control
             type="text"
@@ -131,7 +131,7 @@ const Register3JobSeeker = ({ onNext, formData, setFormData }) => {
           />
         </Form.Group>
 
-        <Form.Group className="custom-form-group" controlId="startDate">
+        <Form.Group className={styles.custom_form_group} controlId="startDate">
           <Form.Label>Start Date<span className="text-danger"> *</span></Form.Label>
           <Form.Control
             type="date"
@@ -143,7 +143,7 @@ const Register3JobSeeker = ({ onNext, formData, setFormData }) => {
           />
         </Form.Group>
 
-        <Form.Group className="custom-form-group" controlId="expectedSalary">
+        <Form.Group className={styles.custom_form_group} controlId="expectedSalary">
           <Form.Label>Expected Salary<span className="text-danger"> *</span></Form.Label>
           <Form.Control
             type="text"
@@ -155,7 +155,7 @@ const Register3JobSeeker = ({ onNext, formData, setFormData }) => {
           />
         </Form.Group>
 
-        <Form.Group className="custom-form-group" controlId="lastestSalary">
+        <Form.Group className={styles.custom_form_group} controlId="lastestSalary">
           <Form.Label>Lastest Salary<span className="text-danger"> *</span></Form.Label>
           <Form.Control
             type="text"
@@ -167,7 +167,7 @@ const Register3JobSeeker = ({ onNext, formData, setFormData }) => {
           />
         </Form.Group>
 
-        <Form.Group className="custom-form-group" controlId="applicationReason">
+        <Form.Group className={styles.custom_form_group} controlId="applicationReason">
           <Form.Label>Application Reason<span className="text-danger"> *</span></Form.Label>
           <Form.Control
             type="text"
@@ -180,7 +180,7 @@ const Register3JobSeeker = ({ onNext, formData, setFormData }) => {
         </Form.Group>
 
         <br />
-        <Form.Group className="custom-button">
+        <Form.Group className={styles.custom_button}>
           <Button className="primary col-12" type="submit">
             Next
           </Button>
