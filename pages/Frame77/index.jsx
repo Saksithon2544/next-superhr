@@ -13,8 +13,8 @@
  **********************************************************************/
 
 import React from 'react';
-import Q0012Image from 'src/assets/images/Frame77__0012.png';
-import IconoirChatBubbleQueImage from 'src/assets/images/Frame77_iconoir_chat_bubble_question.png';
+import Q0012Image from '../../src/images/Frame77__0012.png';
+import IconoirChatBubbleQueImage from '../../src/images/Frame77_iconoir_chat_bubble_question.png';
 import { styled } from '@mui/material/styles';
 
 const Frame771 = styled('div')({
@@ -161,7 +161,7 @@ const AreYouSureYouWantToL = styled('div')({
 function Frame77(props) {
   return (
     <Frame771 className={props.className}>
-      <Q0012 src={Q0012Image} loading="lazy" alt={'_0012'} />
+      <Q0012 src={Q0012Image.src} loading="lazy" alt={'_0012'} />
       <Frame79>
         <No>{`NO`}</No>
       </Frame79>
@@ -169,7 +169,7 @@ function Frame77(props) {
         <Yes>{`YES`}</Yes>
       </Frame78>
       <IconoirChatBubbleQue
-        src={IconoirChatBubbleQueImage}
+        src={IconoirChatBubbleQueImage.src}
         loading="lazy"
         alt={'iconoir:chat-bubble-question'}
       />

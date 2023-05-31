@@ -5,7 +5,7 @@ import { isEmail } from 'validator';
 import Swal from 'sweetalert2';
 
 // Image
-import logo from '../../assets/images/Logo.png';
+import logo from '../../src/images/Logo.png';
 
 // CSS
 import './ForgetPassword.css';
@@ -47,7 +47,7 @@ const ForgetPassword = () => {
       <Row className="justify-content-center">
         <Col xs={12} md={6} lg={4}>
           <div className="text-center mb-5 mt-4 logo-container">
-            <img src={logo} alt="Logo" className="img-fluid" />
+            <img src={logo.src} alt="Logo" className="img-fluid" />
           </div>
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3">
