@@ -11,7 +11,7 @@ import axios from 'axios';
 import logo from '../../src/images/Logo.png';
 
 // CSS
-import './SignUp.css';
+import styles from './SignUp.module.css';
 
 const SignUp = () => {
   const [username, setUsername] = useState('');
@@ -88,7 +88,7 @@ const SignUp = () => {
     <Container>
       <Row className="justify-content-center">
         <Col xs={12} md={6} lg={4}>
-          <div className="text-center mb-5 mt-4 logo-container">
+          <div className={`text-center mb-5 mt-4 ${styles.logo_container}`}>
             <img src={logo.src} alt="Logo" className="img-fluid" />
           </div>
           <Form onSubmit={handleSubmit}>
@@ -99,7 +99,7 @@ const SignUp = () => {
             <Form.Group controlId="formUsername" className="mb-3">
               <Form.Label>Username</Form.Label>
               <Form.Control
-                className="bg-input"
+                className={styles.bg_input}
                 type="text"
                 placeholder="Enter your username"
                 value={username}
@@ -110,7 +110,7 @@ const SignUp = () => {
             <Form.Group controlId="formPassword" className="mb-3">
               <Form.Label>Password</Form.Label>
               <Form.Control
-                className="bg-input"
+                className={styles.bg_input}
                 type="password"
                 placeholder="Enter your password"
                 value={password}
@@ -121,7 +121,7 @@ const SignUp = () => {
             <Form.Group controlId="formConfirmPassword" className="mb-5">
               <Form.Label>Confirm Password</Form.Label>
               <Form.Control
-                className="bg-input"
+                className={styles.bg_input}
                 type="password"
                 placeholder="Re-enter your password"
                 value={confirmPassword}

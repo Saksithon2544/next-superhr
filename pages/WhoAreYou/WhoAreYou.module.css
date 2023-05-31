@@ -1,13 +1,13 @@
-.bg-input {
+.bg_input {
     background-color: #f2f5ff;
 }
 
-.img-container {
+.img_container {
     margin-left: 50px;
     margin-right: 50px;
 }
 
-.text-padding{
+.text_padding{
     padding-top: 50px;
     padding-bottom: 50px;
     font-weight: 500px;

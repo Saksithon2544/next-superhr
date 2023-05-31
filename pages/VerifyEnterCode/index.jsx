@@ -58,7 +58,7 @@ const VerifyEnterCode = () => {
     <Container>
       <Row className="justify-content-center">
         <Col xs={12} md={6} lg={4}>
-          <div className="text-center mb-5 mt-4 logo-container">
+          <div className={`text-center mb-5 mt-4 ${styles.logo_container}`}>
             <img src={logo.src} alt="Logo" className="img-fluid" />
           </div>
           <Form onSubmit={handleSubmit}>

@@ -5,7 +5,10 @@ import Swal from 'sweetalert2';
 import Woman1Image from '../../src/images/Whoareyou_Woman1.jpg';
 import Man1Image from '../../src/images/Whoareyou_Man1.jpg';
 import Business0003Image from '../../src/images/Whoareyou_Business_0003.jpg';
-import './WhoAreYou.css';
+
+// CSS
+import styles from './WhoAreYou.module.css';
+
 
 function handleLinkClick(route, router, role) {
   let confirmationText = '';
@@ -42,13 +45,13 @@ function WhoAreYou(props) {
     <Container>
       <Row className="text-center">
         <Col>
-          <h1 className="text-padding">Select your role</h1>
+          <h1 className={styles.text_padding}>Select your role</h1>
         </Col>
       </Row>
       <Row className="justify-content-center">
         <Col xs={12} sm={12} md={8} className="mb-4">
           <div
-            className={`role-card img-container ${selectedRole === 'intern' ? 'selected' : ''}` } 
+            className={`role-card ${styles.img_container} ${selectedRole === 'intern' ? 'selected' : ''}` } 
             style={{ cursor: 'pointer' }}
             onClick={() => handleLinkClick('/Register/Intern', router, 'intern')}
           >
@@ -61,7 +64,7 @@ function WhoAreYou(props) {
         </Col>
         <Col xs={12} sm={12} md={8} className="mb-4">
           <div
-            className={`role-card img-container ${selectedRole === 'jobseeker' ? 'selected' : ''}`}
+            className={`role-card ${styles.img_container} ${selectedRole === 'jobseeker' ? 'selected' : ''}`}
             style={{ cursor: 'pointer' }}
             onClick={() => handleLinkClick('/Register/JobSeeker', router, 'jobseeker')}
           >
@@ -74,7 +77,7 @@ function WhoAreYou(props) {
         </Col>
         <Col xs={12} sm={12} md={8} className="mb-4">
           <div
-            className={`role-card img-container ${selectedRole === 'employee' ? 'selected' : ''}`}
+            className={`role-card ${styles.img_container} ${selectedRole === 'employee' ? 'selected' : ''}`}
             style={{ cursor: 'pointer' }}
             onClick={() => handleLinkClick('/Register/Employee', router, 'employee')}
           >
