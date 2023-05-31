@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
 import logo from '../../src/images/Logo.png';
 
 // CSS
-import './ForgetPassword.css';
+import styles from './ForgetPassword.module.css';
 
 const ForgetPassword = () => {
   const [email, setEmail] = useState('');
@@ -46,7 +46,7 @@ const ForgetPassword = () => {
     <Container>
       <Row className="justify-content-center">
         <Col xs={12} md={6} lg={4}>
-          <div className="text-center mb-5 mt-4 logo-container">
+          <div className={`text-center mb-5 mt-4 ${styles.logo_container}`}>
             <img src={logo.src} alt="Logo" className="img-fluid" />
           </div>
           <Form onSubmit={handleSubmit}>
@@ -62,7 +62,7 @@ const ForgetPassword = () => {
             <Form.Group className="mb-3">
               <Form.Label>Email</Form.Label>
               <Form.Control
-                className="bg-input"
+                className={styles.bg_input}
                 type="email"
                 placeholder="Enter your email"
                 value={email}
