@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 
+// CSS
+import styles from './RegisterEmployee.module.css';
+
 const Employee3 = ({ onNext }) => {
 
   const [formData, setFormData] = useState({

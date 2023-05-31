@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 
+// CSS
+import styles from './RegisterIntern.module.css';
+
+
 const Register3Intern = ({ onNext, formData, setFormData }) => {
   const [educationData, setEducationData] = useState({
     university: formData?.education?.university || '',

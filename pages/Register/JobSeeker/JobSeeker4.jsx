@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 
+// CSS
+import styles from './RegisterJobSeeker.module.css';
+
+
 const Register4JobSeeker = ({ onNext, formData, setFormData }) => {
 
   const handleSubmit = async (e) => {

@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 
+// CSS
+import styles from './RegisterEmployee.module.css';
+
 const Employee2 = ({ onNext, formData, setFormData }) => {
   const [form2Data, setForm2Data] = useState({
     idAddress: '',
