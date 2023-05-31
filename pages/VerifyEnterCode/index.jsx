@@ -9,7 +9,7 @@ import axios from 'axios';
 import logo from '../../src/images/Logo.png';
 
 // CSS
-import './VerifyEnterCode.css';
+import styles from './VerifyEnterCode.module.css';
 
 const VerifyEnterCode = () => {
   const [codeValue, setCode] = useState('');

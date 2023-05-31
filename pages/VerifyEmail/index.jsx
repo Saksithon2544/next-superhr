@@ -9,7 +9,7 @@ import axios from 'axios';
 import logo from '../../src/images/Logo.png';
 
 // CSS
-import './VerifyEmail.css';
+import styles from './VerifyEmail.module.css';
 
 const VerifyEmail = () => {
   const [email, setEmail] = useState('');
