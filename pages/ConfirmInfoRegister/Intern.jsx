@@ -10,19 +10,19 @@ import axios from 'axios';
 import ThankImage from '../../src/images/Thank.jpg';
 
 //CSS
-import './ConfirmInfoRegister.css';
+import styles from './ConfirmInfoRegister.module.css';
 
 const ProfileInfo = ({ formData }) => {
   return (
-    <div className="personal-details-container">
-      <div className="profile-picture-container">
-        <div className="profile-picture">
+    <div className={styles.personal_details_container}>
+      <div className={styles.profile_picture_container}>
+        <div className={styles.profile_picture}>
           {formData.photoPersonal && <img src={URL.createObjectURL(formData.photoPersonal)} alt="Profile" />}
         </div>
       </div>
-      <div className="personal-info">
-        <p className="full-name">{formData.fullNameEng}</p>
-        <p className="email">{formData.email}</p>
+      <div className={styles.personal_info}>
+        <p className={styles.full_name}>{formData.fullNameEng}</p>
+        <p className={styles.email}>{formData.email}</p>
       </div>
     </div>
   );
@@ -118,20 +118,20 @@ const ConfirmInfoIntern = ({ formData }) => {
   }
 
   return (
-    <Container className="custom-form">
+    <Container className={styles.custom_form}>
       <div style={{ margin: '20px' }}>
         {/* <h1 className="mt-4 pt-4">Confirm Info Register</h1> */}
 
         <ProfileInfo formData={formData} />
 
         <Card className="mt-4 p-4">
-          <Card.Header className="card-header">
+          <Card.Header className={styles.card_header}>
             <h2>Personal Details</h2>
-            <Button variant="link" className="edit-button text-end">
+            <Button variant="link" className={`${styles.edit_button} text-end`}>
               <FaEdit />
             </Button>
           </Card.Header>
-          <Card.Body className="custom-card-body">
+          <Card.Body className={styles.custom_card_body}>
             <p>
               <b>Prefix:</b> {formData.prefix}
             </p>
@@ -181,13 +181,13 @@ const ConfirmInfoIntern = ({ formData }) => {
         </Card>
 
         <Card className="mt-4 p-4">
-          <Card.Header className="card-header">
+          <Card.Header className={styles.card_header}>
             <h2>Education</h2>
-            <Button variant="link" className="edit-button">
+            <Button variant="link" className={styles.edit_button}>
               <FaEdit />
             </Button>
           </Card.Header>
-          <Card.Body className="custom-card-body">
+          <Card.Body className={styles.custom_card_body}>
             <p>
               <b>University:</b> {formData.education.university}
             </p>
@@ -207,13 +207,13 @@ const ConfirmInfoIntern = ({ formData }) => {
         </Card>
 
         <Card className="mt-4 p-4">
-          <Card.Header className="card-header">
+          <Card.Header className={styles.card_header}>
             <h2>Application</h2>
-            <Button variant="link" className="edit-button">
+            <Button variant="link" className={styles.edit_button}>
               <FaEdit />
             </Button>
           </Card.Header>
-          <Card.Body className="custom-card-body">
+          <Card.Body className={styles.custom_card_body}>
             <p>
               <b>Position:</b> {formData.application.position}
             </p>
@@ -227,13 +227,13 @@ const ConfirmInfoIntern = ({ formData }) => {
         </Card>
 
         <Card className="mt-4 p-4">
-          <Card.Header className="card-header">
+          <Card.Header className={styles.card_header}>
             <h2>File Upload Your Documents</h2>
-            <Button variant="link" className="edit-button">
+            <Button variant="link" className={styles.edit_button}>
               <FaEdit />
             </Button>
           </Card.Header>
-          <Card.Body className="custom-card-body">
+          <Card.Body className={styles.custom_card_body}>
             <p>
               <b>Resume / CV:</b> {formData.resumeCv ? formData.resumeCv.name : ''}
             </p>
@@ -258,7 +258,7 @@ const ConfirmInfoIntern = ({ formData }) => {
           </Card.Body>
         </Card>
 
-        <div className="submit-button-container">
+        <div className={styles.submit_button_container}>
           <Button variant="primary" className="submit-button col-12" onClick={handleConfirm}>
             Submit
           </Button>

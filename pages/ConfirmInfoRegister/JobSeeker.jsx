@@ -130,9 +130,10 @@ const ConfirmInfoRegisterJobSeeker = ({ formData }) => {
                 <Card className="mt-4 p-4">
                     <Card.Header className={styles.card_header}>
                         <h2>Personal Details</h2>
-                        <Button variant="link" className={styles.edit_button+' text-end'}>
+                        <Button variant="link" className={`${styles.edit_button} text-end`}>
                             <FaEdit />
                         </Button>
+
                     </Card.Header>
                     <Card.Body className={styles.custom_card_body}>
                         <p>
