@@ -84,7 +84,7 @@ const ConfirmInfoRegisterJobSeeker = ({ formData }) => {
                 data.append('photoPersonal', formData.photoPersonal);
 
                 axios
-                    .post(`${API_BASE_URL}/api/register_jobSeeker`, data)
+                    .post(`https://khaki-legs-production.up.railway.app/register_jobSeeker`, data)
                     .then((response) => {
                         Swal.fire({
                             imageUrl: ThankImage.src,
