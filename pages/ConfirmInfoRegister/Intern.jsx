@@ -81,7 +81,7 @@ const ConfirmInfoIntern = ({ formData }) => {
         // Append other files
 
         axios
-          .post(`/api/auth/register-intern`, data)
+          .post(`/api/registerintern/register`, data)
           .then((response) => {
             Swal.fire({
               imageUrl: ThankImage.src,
@@ -99,6 +99,7 @@ const ConfirmInfoIntern = ({ formData }) => {
           })
           .catch((error) => {
             console.log(error);
+            console.log(formData);
             Swal.fire({
               icon: 'error',
               title: 'Error',
