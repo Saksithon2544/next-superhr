@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Form, Container, ProgressBar } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
+import { useRouter } from 'next/router';
 
 // Components
 import Intern2 from './Intern2';
@@ -8,7 +9,6 @@ import Intern3 from './Intern3';
 import Intern4 from './Intern4';
 import ConfirmInfo from '../../ConfirmInfoRegister/Intern';
 
-import { useRouter } from 'next/router';
 
 // CSS
 import styles from './RegisterIntern.module.css';
@@ -19,7 +19,6 @@ function RegisterIntern() {
   const [formData, setFormData] = useState({});
 
   const router = useRouter();
-  console.log(router.query);
 
   const onSubmit = (data) => {
     // console.log(data);

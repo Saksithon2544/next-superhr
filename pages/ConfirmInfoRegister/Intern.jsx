@@ -99,7 +99,7 @@ const ConfirmInfoIntern = ({ formData }) => {
               confirmButtonColor: '#0000FF',
               confirmButtonText: 'OK',
             }).then(() => {
-              router.push('/signin');
+              router.push('/Signin');
             });
           })
           .catch((error) => {

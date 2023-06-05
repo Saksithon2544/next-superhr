@@ -45,6 +45,7 @@ const ConfirmInfoRegisterJobSeeker = ({ formData }) => {
             if (result.isConfirmed) {
                 const data = new FormData();
                 // Append form data
+                data.append('username', formData.username);
                 data.append('prefix', formData.prefix);
                 data.append('fullNameThai', formData.fullNameThai);
                 data.append('fullNameEng', formData.fullNameEng);
@@ -83,8 +84,12 @@ const ConfirmInfoRegisterJobSeeker = ({ formData }) => {
                 data.append('idCard', formData.idCard);
                 data.append('photoPersonal', formData.photoPersonal);
 
-                axios
-                    .post(`https://khaki-legs-production.up.railway.app/register_jobSeeker`, data)
+                axios({
+                    method: 'post',
+                    url: '/api/jobseeker/register',
+                    data,
+                    headers: { 'Content-Type': 'multipart/form-data' },
+                })
                     .then((response) => {
                         Swal.fire({
                             imageUrl: ThankImage.src,
@@ -97,7 +102,7 @@ const ConfirmInfoRegisterJobSeeker = ({ formData }) => {
                             confirmButtonColor: '#0000FF',
                             confirmButtonText: 'OK',
                         }).then(() => {
-                            router.push('/signin');
+                            router.push('/Signin');
                         });
                     })
                     .catch((error) => {

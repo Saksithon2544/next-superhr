@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Form, Container, ProgressBar } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
+import { useRouter } from 'next/router';
 
 // CSS
 import styles from './RegisterJobSeeker.module.css';
@@ -16,9 +17,12 @@ function RegisterJobSeeker() {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [formData, setFormData] = useState({});
 
+  const router = useRouter();
+
   const onSubmit = (data) => {
     // console.log(data);
-    setFormData({ ...data, fileNames: Object.keys(data) }); // Add fileNames to formData
+    const { username, email } = router.query;
+    setFormData({ ...data, fileNames: Object.keys(data), username, email }); // Add fileNames to formData
     nextStep();
   };
 
@@ -93,7 +97,7 @@ function RegisterJobSeeker() {
 
               <Form.Group className={styles.custom_form_group} controlId="birthday">
                 <Form.Label>Date of birth<span className="text-danger"> *</span></Form.Label>
-                <Form.Control type="date" name="birthday" placeholder="DD/MM/YYYY"  {...register('birthday')} />
+                <Form.Control type="date" placeholder="DD/MM/YYYY"  {...register('birthday')} />
               </Form.Group>
 
               <Form.Group className={styles.custom_form_group} controlId="maritalStatus">
