@@ -67,7 +67,10 @@ const SignUp = () => {
             title: 'Success',
             text: 'Account created successfully',
           });
-          router.push('/VerifyEmail', { state: { username, password } });
+          router.push({
+            pathname: '/VerifyEmail',
+            query: { username: username },
+          });
         }
 
         // Handle the response if needed

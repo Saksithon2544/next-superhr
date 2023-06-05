@@ -17,14 +17,14 @@ const VerifyEnterCode = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-  
+
     try {
-      const { code: sentCode, email } = router.query;
-  
+      const { code: sentCode, email, username } = router.query;
+
       const response = await axios.post(`/api/verifycode`, { code: sentCode, codeValue: codeValue, email });
 
-     
-  
+      console.log(response.data);
+
       if (response.data.success === true) {
         // Code is verified, show success message
         Swal.fire({
@@ -34,7 +34,10 @@ const VerifyEnterCode = () => {
           confirmButtonText: 'Complete',
           confirmButtonColor: '#0000FF',
         }).then((result) => {
-          router.push('/WhoAreYou');
+          router.push({
+            pathname: '/WhoAreYou',
+            query: { username, email },
+          });
         });
       } else {
         // Code is incorrect, show error message
@@ -52,8 +55,8 @@ const VerifyEnterCode = () => {
       console.log(error);
     }
   };
-  
-  
+
+
 
   return (
     <Container>

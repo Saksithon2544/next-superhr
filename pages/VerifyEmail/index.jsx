@@ -13,6 +13,7 @@ import styles from './VerifyEmail.module.css';
 const VerifyEmail = () => {
   const [email, setEmail] = useState('');
   const router = useRouter();
+  console.log(router.query);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -27,7 +28,7 @@ const VerifyEmail = () => {
         // Redirect to the verify-enter-code page with email and code as parameters
         router.push({
           pathname: '/VerifyEnterCode',
-          query: { email, code },
+          query: { username:router.query.username , email, code },
         });
       }
     } catch (error) {

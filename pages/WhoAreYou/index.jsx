@@ -10,36 +10,43 @@ import Business0003Image from '../../src/images/Whoareyou_Business_0003.jpg';
 import styles from './WhoAreYou.module.css';
 
 
-function handleLinkClick(route, router, role) {
-  let confirmationText = '';
-  if (role === 'intern') {
-    confirmationText = 'Are you currently choosing an intern role?';
-  } else if (role === 'jobseeker') {
-    confirmationText = 'Are you currently choosing an jobseeker role?';
-  } else if (role === 'employee') {
-    confirmationText = 'Are you currently choosing an employee role?';
-  }
 
-  Swal.fire({
-    title: 'Confirmation',
-    text: confirmationText,
-    icon: 'question',
-    showCancelButton: true,
-    confirmButtonColor: '#0000FF',
-    confirmButtonText: 'Yes',
-    cancelButtonColor: '#FF0000',
-    cancelButtonText: 'No'
-  }).then((result) => {
-    if (result.isConfirmed) {
-      // User confirmed, navigate to the specified route
-      router.push(route);
-    }
-  });
-}
 
 function WhoAreYou(props) {
   const router = useRouter();
   const [selectedRole] = useState('');
+  console.log(router.query);
+
+
+  function handleLinkClick(route, role) {
+    let confirmationText = '';
+    if (role === 'intern') {
+      confirmationText = 'Are you currently choosing an intern role?';
+    } else if (role === 'jobseeker') {
+      confirmationText = 'Are you currently choosing an jobseeker role?';
+    } else if (role === 'employee') {
+      confirmationText = 'Are you currently choosing an employee role?';
+    }
+
+    Swal.fire({
+      title: 'Confirmation',
+      text: confirmationText,
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#0000FF',
+      confirmButtonText: 'Yes',
+      cancelButtonColor: '#FF0000',
+      cancelButtonText: 'No'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // User confirmed, navigate to the specified route
+        router.push({
+          pathname: route,
+          query: router.query,
+        });
+      }
+    });
+  }
 
   return (
     <Container>
@@ -51,9 +58,9 @@ function WhoAreYou(props) {
       <Row className="justify-content-center">
         <Col xs={12} sm={12} md={8} className="mb-4">
           <div
-            className={`role-card ${styles.img_container} ${selectedRole === 'intern' ? 'selected' : ''}` } 
+            className={`role-card ${styles.img_container} ${selectedRole === 'intern' ? 'selected' : ''}`}
             style={{ cursor: 'pointer' }}
-            onClick={() => handleLinkClick('/Register/Intern', router, 'intern')}
+            onClick={() => handleLinkClick('/Register/Intern', 'intern')}
           >
             <div className="role-card-inner">
               <div className="role-icon">
@@ -66,7 +73,7 @@ function WhoAreYou(props) {
           <div
             className={`role-card ${styles.img_container} ${selectedRole === 'jobseeker' ? 'selected' : ''}`}
             style={{ cursor: 'pointer' }}
-            onClick={() => handleLinkClick('/Register/JobSeeker', router, 'jobseeker')}
+            onClick={() => handleLinkClick('/Register/JobSeeker', 'jobseeker')}
           >
             <div className="role-card-inner">
               <div className="role-icon">
@@ -79,7 +86,7 @@ function WhoAreYou(props) {
           <div
             className={`role-card ${styles.img_container} ${selectedRole === 'employee' ? 'selected' : ''}`}
             style={{ cursor: 'pointer' }}
-            onClick={() => handleLinkClick('/Register/Employee', router, 'employee')}
+            onClick={() => handleLinkClick('/Register/Employee', 'employee')}
           >
             <div className="role-card-inner">
               <div className="role-icon">

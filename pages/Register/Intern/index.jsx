@@ -8,6 +8,8 @@ import Intern3 from './Intern3';
 import Intern4 from './Intern4';
 import ConfirmInfo from '../../ConfirmInfoRegister/Intern';
 
+import { useRouter } from 'next/router';
+
 // CSS
 import styles from './RegisterIntern.module.css';
 
@@ -16,9 +18,13 @@ function RegisterIntern() {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [formData, setFormData] = useState({});
 
+  const router = useRouter();
+  console.log(router.query);
+
   const onSubmit = (data) => {
     // console.log(data);
-    setFormData({ ...data, fileNames: Object.keys(data) }); // Add fileNames to formData
+    const { username, email } = router.query;
+    setFormData({ ...data, fileNames: Object.keys(data), username, email }); // Add fileNames to formData
     nextStep();
   };
 
@@ -128,12 +134,12 @@ function RegisterIntern() {
                 <Form.Control as="select" defaultValue={""} {...register('nationality')}>
                   <option value="" disabled>Select nationality</option>
                   {nationalities
-                  .sort((a, b) => a.name.localeCompare(b.name))
-                  .map((nationality, index) => (
-                    <option key={index} value={nationality.name}>
-                      {nationality.name}
-                    </option>
-                  ))}
+                    .sort((a, b) => a.name.localeCompare(b.name))
+                    .map((nationality, index) => (
+                      <option key={index} value={nationality.name}>
+                        {nationality.name}
+                      </option>
+                    ))}
                 </Form.Control>
               </Form.Group>
               <br />

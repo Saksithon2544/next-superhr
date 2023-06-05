@@ -44,6 +44,7 @@ const ConfirmInfoIntern = ({ formData }) => {
       if (result.isConfirmed) {
         const data = new FormData();
         // Append form data
+        data.append('username' , formData.username);
         data.append('prefix', formData.prefix);
         data.append('fullNameThai', formData.fullNameThai);
         data.append('fullNameEng', formData.fullNameEng);
@@ -80,8 +81,12 @@ const ConfirmInfoIntern = ({ formData }) => {
         data.append('photoPersonal', formData.photoPersonal);
         // Append other files
 
-        axios
-          .post(`https://khaki-legs-production.up.railway.app/register_intern`, data)
+        axios({
+          method: 'post',
+          url: '/api/intern/register',
+          data,
+          headers: { 'Content-Type': 'multipart/form-data' },
+        })
           .then((response) => {
             Swal.fire({
               imageUrl: ThankImage.src,
