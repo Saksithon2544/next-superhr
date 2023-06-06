@@ -364,7 +364,7 @@ const Employee3 = ({ onNext }) => {
             </Form.Group>
 
             {/* Child 1 */}
-            <Form.Group className={`${styles.custom_form_group} col-8`} controlId="child1">
+            <Form.Group className={`${styles.custom_form_group}`} controlId="child1">
               <Form.Label>Children (Age 1-20 years, Born after year 2018)</Form.Label>
               <Form.Control
                 type="text"
