@@ -172,57 +172,23 @@ const ConfirmInfoRegisterEmployee = ({ formData }) => {
               <b>Phone Number:</b> {formData.phoneNumber}
             </p>
             <p>
-              <b>Contact Person:</b> {formData.contactPerson}
-            </p>
-            <p>
-              <b>Contact Person Phone Number:</b> {formData.contactPersonPhoneNumber}
-            </p>
-          </Card.Body>
-        </Card>
-
-        <Card className="mt-4 p-4">
-          <Card.Header className={styles.card_header}>
-            <h2>Education</h2>
-            <Button variant="link" className={styles.edit_button}>
-              <FaEdit />
-            </Button>
-          </Card.Header>
-          <Card.Body className={styles.custom_card_body}>
-            <p>
-              <b>University:</b> {formData.university}
-            </p>
-            <p>
-              <b>Education Level:</b> {formData.educationLevel}
-            </p>
-            <p>
-              <b>Major:</b> {formData.major}
-            </p>
-            <p>
-              <b>Field:</b> {formData.field}
-            </p>
-            <p>
-              <b>GPA:</b> {formData.GPA}
-            </p>
-          </Card.Body>
-        </Card>
-
-        <Card className="mt-4 p-4">
-          <Card.Header className={styles.card_header}>
-            <h2>Application</h2>
-            <Button variant="link" className={styles.edit_button}>
-              <FaEdit />
-            </Button>
-          </Card.Header>
-          <Card.Body className={styles.custom_card_body}>
-            <p>
               <b>Position:</b> {formData.position}
             </p>
             <p>
-              <b>Internship Period:</b> {formData.internshipPeriod}
+              <b>Client:</b> {formData.client}
             </p>
-            <p>
-              <b>Application Reason:</b> {formData.applicationReason}
-            </p>
+          </Card.Body>
+        </Card>
+
+        <Card className="mt-4 p-4">
+          <Card.Header className={styles.card_header}>
+            <h2>Social security fund detail</h2>
+            <Button variant="link" className={styles.edit_button}>
+              <FaEdit />
+            </Button>
+          </Card.Header>
+          <Card.Body className={styles.custom_card_body}>
+            
           </Card.Body>
         </Card>
 
@@ -238,9 +204,6 @@ const ConfirmInfoRegisterEmployee = ({ formData }) => {
               <b>Resume / CV:</b> {formData.resumeCv ? formData.resumeCv.name : ''}
             </p>
             <p>
-              <b>Cover Letter:</b> {formData.coverLetter ? formData.coverLetter.name : ''}
-            </p>
-            <p>
               <b>Transcript:</b> {formData.transcript ? formData.transcript.name : ''}
             </p>
             <p>
@@ -254,6 +217,12 @@ const ConfirmInfoRegisterEmployee = ({ formData }) => {
             </p>
             <p>
               <b>Photo (Personal):</b> {formData.photoPersonal ? formData.photoPersonal.name : ''}
+            </p>
+            <p>
+              <b>Photo with ID Card:</b> {formData.photoWithIdCard ? formData.photoWithIdCard.name : ''}
+            </p>
+            <p>
+              <b>Bank book:</b> {formData.bankBook ? formData.bankBook.name : ''}
             </p>
           </Card.Body>
         </Card>

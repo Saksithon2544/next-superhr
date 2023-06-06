@@ -65,18 +65,6 @@ const Employee4 = ({ onNext, formData, setFormData }) => {
           />
         </Form.Group>
 
-        <Form.Group className={styles.custom_form_group} controlId="coverLetter">
-          <Form.Label>Cover Letter<span className="text-danger"> *</span></Form.Label>
-          <Form.Control
-            type="file"
-            multiple
-            name="coverLetter"
-            accept=".pdf,.png,.jpg"
-            onChange={handleChange}
-          // required
-          />
-        </Form.Group>
-
         <Form.Group className={styles.custom_form_group} controlId="transcript">
           <Form.Label>Transcript<span className="text-danger"> *</span></Form.Label>
           <Form.Control
@@ -130,6 +118,30 @@ const Employee4 = ({ onNext, formData, setFormData }) => {
             type="file"
             multiple
             name="photoPersonal"
+            accept=".pdf,.png,.jpg"
+            onChange={handleChange}
+          // required
+          />
+        </Form.Group>
+
+        <Form.Group className={styles.custom_form_group} controlId="photoIdCard">
+          <Form.Label>Photo with ID Card<span className="text-danger"> *</span></Form.Label>
+          <Form.Control
+            type="file"
+            multiple
+            name="photoIdCard"
+            accept=".pdf,.png,.jpg"
+            onChange={handleChange}
+          // required
+          />
+        </Form.Group>
+
+        <Form.Group className={styles.custom_form_group} controlId="bankBook">
+          <Form.Label>Bank Book<span className="text-danger"> *</span></Form.Label>
+          <Form.Control
+            type="file"
+            multiple
+            name="bankBook"
             accept=".pdf,.png,.jpg"
             onChange={handleChange}
           // required

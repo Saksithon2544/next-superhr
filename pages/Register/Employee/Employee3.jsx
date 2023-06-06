@@ -14,7 +14,7 @@ const Employee3 = ({ onNext }) => {
     position: '',
     client: '',
     socialSecurity: {
-      selfPay: true,
+      selfPay: false,
       companyPay: false,
       pnd3: false,
       pnd53: false,
@@ -24,7 +24,8 @@ const Employee3 = ({ onNext }) => {
       registrationNumber: '',
       registrationAddress: '',
       joiningDate: '',
-      hospitalMember: '',
+      hospitalMember: false,
+      hospitalMember_1: '',
       changeHospital: false,
       changeHospita_1: '',
       changeHospita_2: '',
@@ -32,11 +33,11 @@ const Employee3 = ({ onNext }) => {
       taxDetails: '',
       withholdingTax: '',
       marriedFullName: '',
-      children: '',
-      father: false,
-      mother: false,
-      fatherInLaw: false,
-      motherInLaw: false,
+      children: [
+        { name: '', bornAfterYear: '' },
+        { name: '', bornAfterYear: '' },
+        { name: '', bornAfterYear: '' }
+      ],
       disabledPerson: '',
       lifeInsurance: '',
       healthInsurance: '',
@@ -92,6 +93,36 @@ const Employee3 = ({ onNext }) => {
         },
       }));
     }
+  };
+
+  const handleChildNameChange = (event, index) => {
+    const { value } = event.target;
+    setFormData(prevFormData => {
+      const updatedChildren = [...prevFormData.socialSecurity.children];
+      updatedChildren[index].name = value;
+      return {
+        ...prevFormData,
+        socialSecurity: {
+          ...prevFormData.socialSecurity,
+          children: updatedChildren
+        }
+      };
+    });
+  };
+
+  const handleBornAfterYearChange = (event, index) => {
+    const { value } = event.target;
+    setFormData(prevFormData => {
+      const updatedChildren = [...prevFormData.socialSecurity.children];
+      updatedChildren[index].bornAfterYear = value;
+      return {
+        ...prevFormData,
+        socialSecurity: {
+          ...prevFormData.socialSecurity,
+          children: updatedChildren
+        }
+      };
+    });
   };
 
 
@@ -231,20 +262,24 @@ const Employee3 = ({ onNext }) => {
                 label="Member with"
                 type="checkbox"
                 name="hospitalMember"
-                checked={formData.socialSecurityhospitalMember}
+                checked={formData.socialSecurity.hospitalMember}
                 onChange={handleCheckboxChange}
               />
             </Form.Group>
 
-            <Form.Group className={styles.custom_form_group} controlId="hospital">
-              <Form.Control
-                type="text"
-                name="hospital"
-                placeholder="Hospital Name"
-                value={formData.socialSecurityhospital}
-                onChange={handleCheckboxChange}
-              />
-            </Form.Group>
+            {formData.socialSecurity.hospitalMember && (
+              <>
+                <Form.Group className={styles.custom_form_group} controlId="hospitalMember_1">
+                  <Form.Control
+                    type="text"
+                    placeholder="Hospital Name"
+                    name="hospitalMember_1"
+                    value={formData.socialSecurity.hospitalMember_1}
+                    onChange={handleCheckboxChange}
+                  />
+                </Form.Group>
+              </>
+            )}
 
             <Form.Group className={styles.custom_form_group} controlId="changeHospital">
               <Form.Check
@@ -328,55 +363,104 @@ const Employee3 = ({ onNext }) => {
               />
             </Form.Group>
 
-            <Form.Group className={styles.custom_form_group} controlId="children">
+            {/* Child 1 */}
+            <Form.Group className={`${styles.custom_form_group} col-8`} controlId="child1">
               <Form.Label>Children (Age 1-20 years, Born after year 2018)</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Children"
-                name="children"
-                value={formData.socialSecurity.children}
-                onChange={handleCheckboxChange}
+                placeholder="First child's name"
+                name="child1"
+                value={formData.socialSecurity.children[0].name}
+                onChange={event => handleChildNameChange(event, 0)}
               />
+                <Form.Check
+                  inline
+                  type="radio"
+                  label="Before"
+                  name={`bornYear-${0}`}
+                  value="Before"
+                  checked={formData.socialSecurity.children[0].bornAfterYear === "Before"}
+                  onChange={event => handleBornAfterYearChange(event, 0)}
+                />
+                <Form.Check
+                  inline
+                  type="radio"
+                  label="After"
+                  name={`bornYear-${0}`}
+                  value="After"
+                  checked={formData.socialSecurity.children[0].bornAfterYear === "After"}
+                  onChange={event => handleBornAfterYearChange(event, 0)}
+                />
             </Form.Group>
 
-            <p className={styles.custom_form_group}>Parents</p>
+            {/* Child 2 */}
+            <Form.Group className={styles.custom_form_group} controlId="child2">
+              <Form.Control
+                type="text"
+                placeholder="Second child's name"
+                name="child2"
+                value={formData.socialSecurity.children[1].name}
+                onChange={event => handleChildNameChange(event, 1)}
+              />
+              <div>
+                <Form.Check
+                  inline
+                  type="radio"
+                  label="Before"
+                  name={`bornYear-${1}`}
+                  value="Before"
+                  checked={formData.socialSecurity.children[1].bornAfterYear === "Before"}
+                  onChange={event => handleBornAfterYearChange(event, 1)}
+                />
+                <Form.Check
+                  inline
+                  type="radio"
+                  label="After"
+                  name={`bornYear-${1}`}
+                  value="After"
+                  checked={formData.socialSecurity.children[1].bornAfterYear === "After"}
+                  onChange={event => handleBornAfterYearChange(event, 1)}
+                />
+              </div>
+            </Form.Group>
+
+            {/* Child 3 */}
+            <Form.Group className={styles.custom_form_group} controlId="child3">
+              <Form.Control
+                type="text"
+                placeholder="Third child's name"
+                name="child3"
+                value={formData.socialSecurity.children[2].name}
+                onChange={event => handleChildNameChange(event, 2)}
+              />
+              <div>
+                <Form.Check
+                  inline
+                  type="radio"
+                  label="Before"
+                  name={`bornYear-${2}`}
+                  value="Before"
+                  checked={formData.socialSecurity.children[2].bornAfterYear === "Before"}
+                  onChange={event => handleBornAfterYearChange(event, 2)}
+                />
+                <Form.Check
+                  inline
+                  type="radio"
+                  label="After"
+                  name={`bornYear-${2}`}
+                  value="After"
+                  checked={formData.socialSecurity.children[2].bornAfterYear === "After"}
+                  onChange={event => handleBornAfterYearChange(event, 2)}
+                />
+              </div>
+            </Form.Group>
+
             <Form.Group className={styles.custom_form_group} controlId="parents">
-              <Form.Check
-                inline
-                label="Father"
-                type="checkbox"
-                name="father"
-                checked={formData.socialSecurity.father}
-                onChange={handleCheckboxChange}
-              />
-
-              <Form.Check
-                inline
-                label="Mother"
-                type="checkbox"
-                name="mother"
-                checked={formData.socialSecurity.mother}
-                onChange={handleCheckboxChange}
-              />
-
-              <Form.Check
-                inline
-                label="Father in law"
-                type="checkbox"
-                name="fatherInLaw"
-                checked={formData.socialSecurity.fatherInLaw}
-                onChange={handleCheckboxChange}
-              />
-
-              <Form.Check
-                inline
-                label="Mother in law"
-                type="checkbox"
-                name="motherInLaw"
-                checked={formData.socialSecurity.motherInLaw}
-                onChange={handleCheckboxChange}
-              />
-
+              <Form.Label>Parents<span className="text-danger"> *</span></Form.Label> <br />
+              <Form.Check inline label="Father" type="radio" name="parents" value={"Father"} />
+              <Form.Check inline label="Mother" type="radio" name="parents" value={"Mother"} />
+              <Form.Check inline label="Father in law" type="radio" name="parents" value={"Father in law"} />
+              <Form.Check inline label="Mother in law" type="radio" name="parents" value={""} />
             </Form.Group>
 
             <Form.Group className={styles.custom_form_group} controlId="disabledPerson">
