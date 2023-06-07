@@ -66,6 +66,7 @@ const ConfirmInfoIntern = ({ formData }) => {
         data.append('field', formData.education.field);
         data.append('GPA', formData.education.GPA);
         data.append('position', formData.application.position);
+        data.append('expectedSalary', formData.application.expectedSalary);
         data.append('internshipPeriod', formData.application.internshipPeriod);
         data.append('applicationReason', formData.application.applicationReason);
         // Append other form fields

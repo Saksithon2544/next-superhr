@@ -106,9 +106,8 @@ function RegisterIntern() {
               </Form.Group>
 
               <Form.Group className={styles.custom_form_group} controlId="idNumber">
-                <Form.Label>ID number/ID Passport<span className="text-danger"> *</span></Form.Label>
-                <Form.Control type="text" placeholder="ID number/ID Passport" {...register('idNumber', { required: 'This field is required' })} />
-                {errors.idNumber && showErrorAndNotify('idNumber', 'This ID number/ID Passport is required')}
+                <Form.Label>ID number/ID Passport</Form.Label>
+                <Form.Control type="text" placeholder="ID number/ID Passport" {...register('idNumber')} />
               </Form.Group>
 
               <Form.Group className={styles.custom_form_group} controlId="gender">
@@ -122,7 +121,7 @@ function RegisterIntern() {
 
               <Form.Group className={styles.custom_form_group} controlId="birthday">
                 <Form.Label>Date of birth</Form.Label>
-                <Form.Control type="date" placeholder="DD/MM/YYYY"  {...register('birthday', { required: 'This field is required' })} />
+                <Form.Control type="date" placeholder="DD/MM/YYYY" />
               </Form.Group>
 
               <Form.Group className={styles.custom_form_group} controlId="maritalStatus">
