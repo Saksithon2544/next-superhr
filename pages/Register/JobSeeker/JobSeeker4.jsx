@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Form, Button } from 'react-bootstrap';
+import Swal from 'sweetalert2';
 
 // CSS
 import styles from './RegisterJobSeeker.module.css';
@@ -9,6 +10,23 @@ const Register4JobSeeker = ({ onNext, formData, setFormData }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Check is required fields empty
+    const requiredFields = ['resumeCv', 'transcript'];
+    const emptyFields = [];
+    requiredFields.forEach((field) => {
+      if (!formData[field]) {
+        emptyFields.push(field);
+      }
+    });
+    if (emptyFields.length > 0) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Warning',
+        html: `Please fill in the required fields: <span style="color:red">${emptyFields.join('<span style="color:black"> &</span> ')}</span>`,
+      });
+      return;
+    }
 
     onNext(true); // Pass formDataObj to the onNext callback
 
@@ -67,7 +85,7 @@ const Register4JobSeeker = ({ onNext, formData, setFormData }) => {
         </Form.Group>
 
         <Form.Group className={styles.custom_form_group} controlId="coverLetter">
-          <Form.Label>Cover Letter<span className="text-danger"> *</span></Form.Label>
+          <Form.Label>Cover Letter</Form.Label>
           <Form.Control
             type="file"
             multiple
@@ -102,7 +120,7 @@ const Register4JobSeeker = ({ onNext, formData, setFormData }) => {
         </Form.Group>
 
         <Form.Group className={styles.custom_form_group} controlId="houseRegistration">
-          <Form.Label>House Registration<span className="text-danger"> *</span></Form.Label>
+          <Form.Label>House Registration</Form.Label>
           <Form.Control
             type="file"
             multiple
@@ -114,7 +132,7 @@ const Register4JobSeeker = ({ onNext, formData, setFormData }) => {
         </Form.Group>
 
         <Form.Group className={styles.custom_form_group} controlId="idCard">
-          <Form.Label>ID Card<span className="text-danger"> *</span></Form.Label>
+          <Form.Label>ID Card</Form.Label>
           <Form.Control
             type="file"
             multiple
@@ -126,7 +144,7 @@ const Register4JobSeeker = ({ onNext, formData, setFormData }) => {
         </Form.Group>
 
         <Form.Group className={styles.custom_form_group} controlId="photoPersonal">
-          <Form.Label>Photo (Personal)<span className="text-danger"> *</span></Form.Label>
+          <Form.Label>Photo (Personal)</Form.Label>
           <Form.Control
             type="file"
             multiple

@@ -22,8 +22,25 @@ function RegisterIntern() {
   const router = useRouter();
 
   const onSubmit = (data) => {
+
+    // Check is required fields empty
+    const requiredFields = ['prefix', 'fullNameThai', 'fullNameEng', 'gender'];
+    const emptyFields = [];
+    requiredFields.forEach((field) => {
+      if (!data[field]) {
+        emptyFields.push(field);
+      }
+    });
+    if (emptyFields.length > 0) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Warning',
+        html: `Please fill in the required fields: <span style="color:red">${emptyFields.join('<span style="color:black"> &</span> ')}</span>`,
+      });
+      return;
+    }
+
     const { username, email } = router.query;
-    
     setFormData({ ...data, fileNames: Object.keys(data), username, email }); // Add fileNames to formData
     nextStep();
   };
@@ -57,21 +74,6 @@ function RegisterIntern() {
     fetchNationalities();
   }, []);
 
-  const showErrorAndNotify = (field, message) => {
-    Swal.fire({
-      icon: 'warning',
-      title: 'Warning',
-      text: message,
-      confirmButtonText: 'OK',
-    });
-    return (
-      <>
-        {errors[field] && <p className="text-danger">{errors[field].message}</p>}
-      </>
-    );
-  };
-
-
   return (
     <Container>
       <div style={{ margin: '50px' }}>
@@ -89,20 +91,20 @@ function RegisterIntern() {
               <h5 className={`text-start ${styles.custom_form_group}`}>Personal details</h5>
               <Form.Group className={styles.custom_form_group} controlId="prefix">
                 <Form.Label>Prefix<span className="text-danger"> *</span></Form.Label>
-                <Form.Control type="text" placeholder="Mr. / Ms." {...register('prefix', { required: 'This field is required' })} />
-                {errors.prefix && showErrorAndNotify('prefix', 'This Prefix is required')}
+                <Form.Control type="text" placeholder="Mr. / Ms." {...register('prefix')} />
+                {/* {errors.prefix && showErrorAndNotify('prefix', 'This Prefix is required')} */}
               </Form.Group>
 
               <Form.Group className={styles.custom_form_group} controlId="fullNameThai">
                 <Form.Label>Full name (Thai name)<span className="text-danger"> *</span></Form.Label>
-                <Form.Control type="text" placeholder="Thai name" {...register('fullNameThai', { required: 'This field is required' })} />
-                {errors.fullNameThai && showErrorAndNotify('fullNameThai', 'This Full name (Thai name) is required')}
+                <Form.Control type="text" placeholder="Thai name" {...register('fullNameThai')} />
+                {/* {errors.fullNameThai && showErrorAndNotify('fullNameThai', 'This Full name (Thai name) is required')} */}
               </Form.Group>
 
               <Form.Group className={styles.custom_form_group} controlId="fullNameEng">
                 <Form.Label>Full name (English name)<span className="text-danger"> *</span></Form.Label>
-                <Form.Control type="text" placeholder="English name" {...register('fullNameEng', { required: 'This field is required' })} />
-                {errors.fullNameEng && showErrorAndNotify('fullNameEng', 'This Full name (English name) is required')}
+                <Form.Control type="text" placeholder="English name" {...register('fullNameEng')} />
+                {/* {errors.fullNameEng && showErrorAndNotify('fullNameEng', 'This Full name (English name) is required')} */}
               </Form.Group>
 
               <Form.Group className={styles.custom_form_group} controlId="idNumber">
@@ -112,10 +114,10 @@ function RegisterIntern() {
 
               <Form.Group className={styles.custom_form_group} controlId="gender">
                 <Form.Label>Gender<span className="text-danger"> *</span></Form.Label> <br />
-                <Form.Check inline label="Female" type="radio" name="gender" value={"Female"} {...register('gender', { required: 'Please select a gender' })} />
-                <Form.Check inline label="Male" type="radio" name="gender" value={"Male"} {...register('gender', { required: 'Please select a gender' })} />
-                <Form.Check inline label="LGBTQIA+" type="radio" name="gender" value={"LGBTQIA+"} {...register('gender', { required: 'Please select a gender' })} />
-                {errors.gender && showErrorAndNotify('gender', 'This Gender is required')}
+                <Form.Check inline label="Female" type="radio" name="gender" value={"Female"} {...register('gender')} />
+                <Form.Check inline label="Male" type="radio" name="gender" value={"Male"} {...register('gender')} />
+                <Form.Check inline label="LGBTQIA+" type="radio" name="gender" value={"LGBTQIA+"} {...register('gender')} />
+                {/* {errors.gender && showErrorAndNotify('gender', 'This Gender is required')} */}
               </Form.Group>
 
 

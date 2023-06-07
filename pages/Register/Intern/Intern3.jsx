@@ -37,7 +37,7 @@ const Register3Intern = ({ onNext, formData, setFormData }) => {
       Swal.fire({
         icon: 'warning',
         title: 'Warning',
-        text: `The following fields are required: ${emptyFields.join(', ')}`,
+        html: `Please fill in the required fields: <span style="color:red">${emptyFields.join('<span style="color:black"> &</span> ')}</span>`,
       });
       return;
     }

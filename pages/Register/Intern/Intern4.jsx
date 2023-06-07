@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Form, Button } from 'react-bootstrap';
 import Swal from 'sweetalert2';
 
@@ -23,7 +23,7 @@ const Register4Intern = ({ onNext, formData, setFormData }) => {
       Swal.fire({
         icon: 'warning',
         title: 'Warning',
-        text: `The following fields are required: ${emptyFields.join(', ')}`,
+        html: `Please fill in the required fields: <span style="color:red">${emptyFields.join('<span style="color:black"> &</span> ')}</span>`,
       });
       return;
     }

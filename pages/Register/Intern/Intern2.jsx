@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
-import { useFrom } from 'react-hook-form';
 import Swal from 'sweetalert2';
 
 // CSS
@@ -32,7 +31,7 @@ const Register2Intern = ({ onNext, formData, setFormData }) => {
       Swal.fire({
         icon: 'warning',
         title: 'Warning',
-        text: `The following fields are required: ${emptyFields.join(', ')}`,
+        html: `Please fill in the required fields: <span style="color:red">${emptyFields.join('<span style="color:black"> &</span> ')}</span>`,
       });
       return;
     }

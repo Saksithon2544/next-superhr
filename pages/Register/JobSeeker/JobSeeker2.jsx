@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
+import Swal from 'sweetalert2';
 
 // CSS
 import styles from './RegisterJobSeeker.module.css';
@@ -23,6 +24,24 @@ const Register2JobSeeker = ({ onNext, formData, setFormData }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // Check is required fields empty
+    const requiredFields = ['email', 'phoneNumber'];
+    const emptyFields = [];
+    requiredFields.forEach((field) => {
+      if (!form2Data[field]) {
+        emptyFields.push(field);
+      }
+    });
+    if (emptyFields.length > 0) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Warning',
+        html: `Please fill in the required fields: <span style="color:red">${emptyFields.join('<span style="color:black"> &</span> ')}</span>`,
+      });
+      return;
+    }
+
     setFormData({ ...formData, ...form2Data });
     onNext();
   };
@@ -33,7 +52,7 @@ const Register2JobSeeker = ({ onNext, formData, setFormData }) => {
       <Form className={styles.custom_form} onSubmit={handleSubmit}>
         <br />
         <Form.Group className={styles.custom_form_group} controlId="idAddress">
-          <Form.Label>ID (House registration) Address<span className="text-danger"> *</span></Form.Label>
+          <Form.Label>ID (House registration) Address</Form.Label>
           <Form.Control
             type="text"
             placeholder="ID address"
@@ -45,7 +64,7 @@ const Register2JobSeeker = ({ onNext, formData, setFormData }) => {
         </Form.Group>
 
         <Form.Group className={styles.custom_form_group} controlId="currentAddress">
-          <Form.Label>Current Address<span className="text-danger"> *</span></Form.Label>
+          <Form.Label>Current Address</Form.Label>
           <Form.Control
             as={"textarea"}
             placeholder="Current address"

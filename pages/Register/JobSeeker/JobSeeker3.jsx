@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
+import Swal from 'sweetalert2';
 
 // CSS
 import styles from './RegisterJobSeeker.module.css';
@@ -16,17 +17,38 @@ const Register3JobSeeker = ({ onNext, formData, setFormData }) => {
 
   const [applicationData, setApplicationData] = useState({
     position: formData?.application?.position || '',
-    internshipPeriod: formData?.application?.internshipPeriod || '',
+    startDate: formData?.application?.startDate || '',
+    expectedSalary: formData?.application?.expectedSalary || '',
+    lastestSalary: formData?.application?.lastestSalary || '',
     applicationReason: formData?.application?.applicationReason || '',
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
+    // Check is required fields empty
+    const requiredFields = ['university', 'educationLevel', 'major', 'position', 'startDate', 'expectedSalary', 'lastestSalary', 'applicationReason'];
+    const emptyFields = [];
+    requiredFields.forEach((field) => {
+      if (!educationData[field] && !applicationData[field]) {
+        emptyFields.push(field);
+      }
+    });
+    if (emptyFields.length > 0) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Warning',
+        html: `Please fill in the required fields: <span style="color:red">${emptyFields.join('<span style="color:black"> &</span> ')}</span>`,
+      });
+      return;
+    }
+
+
     const updatedFormData = {
       education: educationData,
       application: applicationData,
     };
-    // console.log(updatedFormData);
+  
     setFormData({ ...formData, ...updatedFormData });
     onNext();
   };
@@ -98,7 +120,7 @@ const Register3JobSeeker = ({ onNext, formData, setFormData }) => {
         </Form.Group>
 
         <Form.Group className={styles.custom_form_group} controlId="field">
-          <Form.Label>Field<span className="text-danger"> *</span></Form.Label>
+          <Form.Label>Field</Form.Label>
           <Form.Control
             as={"textarea"}
             placeholder="Field"
@@ -110,7 +132,7 @@ const Register3JobSeeker = ({ onNext, formData, setFormData }) => {
         </Form.Group>
 
         <Form.Group className={styles.custom_form_group} controlId="GPA">
-          <Form.Label>GPA<span className="text-danger"> *</span></Form.Label>
+          <Form.Label>GPA</Form.Label>
           <Form.Control
             type="text"
             placeholder="GPA"
