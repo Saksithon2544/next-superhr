@@ -190,7 +190,7 @@ const ConfirmInfoRegisterEmployee = ({ formData }) => {
           <Card.Body className={styles.custom_card_body}>
             {/* Display social security fund details */}
           </Card.Body>
-        </Card>
+        </Card> 
 
         <Card className="mt-4 p-4">
           <Card.Header className={styles.card_header}>

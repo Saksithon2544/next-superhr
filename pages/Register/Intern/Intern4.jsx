@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
+import Swal from 'sweetalert2';
 
 // CSS
 import styles from './RegisterIntern.module.css';
@@ -9,6 +10,24 @@ const Register4Intern = ({ onNext, formData, setFormData }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Check is required fields empty
+    const requiredFields = ['resumeCv', 'transcript'];
+    const emptyFields = [];
+    requiredFields.forEach((field) => {
+      if (!formData[field]) {
+        emptyFields.push(field);
+      }
+    });
+    if (emptyFields.length > 0) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Warning',
+        text: `The following fields are required: ${emptyFields.join(', ')}`,
+      });
+      return;
+    }
+
 
     onNext(true); // Pass formDataObj to the onNext callback
    
@@ -62,19 +81,17 @@ const Register4Intern = ({ onNext, formData, setFormData }) => {
             name="resumeCv"
             accept=".pdf,.png,.jpg"
             onChange={handleChange}
-          // required
           />
         </Form.Group>
 
         <Form.Group className={styles.custom_form_group} controlId="coverLetter">
-          <Form.Label>Cover Letter<span className="text-danger"> *</span></Form.Label>
+          <Form.Label>Cover Letter</Form.Label>
           <Form.Control
             type="file"
             multiple
             name="coverLetter"
             accept=".pdf,.png,.jpg"
             onChange={handleChange}
-          // required
           />
         </Form.Group>
 
@@ -86,7 +103,6 @@ const Register4Intern = ({ onNext, formData, setFormData }) => {
             name="transcript"
             accept=".pdf,.png,.jpg"
             onChange={handleChange}
-          // required
           />
         </Form.Group>
 
@@ -102,38 +118,35 @@ const Register4Intern = ({ onNext, formData, setFormData }) => {
         </Form.Group>
 
         <Form.Group className={styles.custom_form_group} controlId="houseRegistration">
-          <Form.Label>House Registration<span className="text-danger"> *</span></Form.Label>
+          <Form.Label>House Registration</Form.Label>
           <Form.Control
             type="file"
             multiple
             name="houseRegistration"
             accept=".pdf,.png,.jpg"
             onChange={handleChange}
-          // required
           />
         </Form.Group>
 
         <Form.Group className={styles.custom_form_group} controlId="idCard">
-          <Form.Label>ID Card<span className="text-danger"> *</span></Form.Label>
+          <Form.Label>ID Card</Form.Label>
           <Form.Control
             type="file"
             multiple
             name="idCard"
             accept=".pdf,.png,.jpg"
             onChange={handleChange}
-          // required
           />
         </Form.Group>
 
         <Form.Group className={styles.custom_form_group} controlId="photoPersonal">
-          <Form.Label>Photo (Personal)<span className="text-danger"> *</span></Form.Label>
+          <Form.Label>Photo (Personal)</Form.Label>
           <Form.Control
             type="file"
             multiple
             name="photoPersonal"
             accept=".pdf,.png,.jpg"
             onChange={handleChange}
-          // required
           />
         </Form.Group>
 

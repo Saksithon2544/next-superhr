@@ -146,7 +146,7 @@ const Employee3 = ({ onNext }) => {
             checked={formData.socialSecurity.selfPay}
             onChange={handleCheckboxChange}
           />
-
+ 
           <Form.Check
             inline
             label="Company-pay"

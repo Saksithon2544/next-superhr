@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
+import Swal from 'sweetalert2';
 
 // CSS
 import styles from './RegisterIntern.module.css';
@@ -16,12 +17,31 @@ const Register3Intern = ({ onNext, formData, setFormData }) => {
 
   const [applicationData, setApplicationData] = useState({
     position: formData?.application?.position || '',
+    expectedSalary: formData?.application?.expectedSalary || '',
     internshipPeriod: formData?.application?.internshipPeriod || '',
     applicationReason: formData?.application?.applicationReason || '',
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
+ 
+    // Check is required fields empty
+    const requiredFields = ['university', 'educationLevel', 'major', 'position', 'internshipPeriod', 'applicationReason'];
+    const emptyFields = [];
+    requiredFields.forEach((field) => {
+      if (!educationData[field] && !applicationData[field]) {
+        emptyFields.push(field);
+      }
+    });
+    if (emptyFields.length > 0) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Warning',
+        text: `The following fields are required: ${emptyFields.join(', ')}`,
+      });
+      return;
+    }
+
     const updatedFormData = {
       education: educationData,
       application: applicationData,
@@ -54,7 +74,7 @@ const Register3Intern = ({ onNext, formData, setFormData }) => {
         <br />
 
         {/* Education Section */}
-        <h5 className="text-start ${styles.custom_form_group}">Education</h5>
+        <h5 className={`text-start ${styles.custom_form_group}`}>Education</h5>
         <Form.Group className={styles.custom_form_group} controlId="university">
           <Form.Label>University<span className="text-danger"> *</span></Form.Label>
           <Form.Control
@@ -63,7 +83,6 @@ const Register3Intern = ({ onNext, formData, setFormData }) => {
             name="university"
             value={educationData.university}
             onChange={handleEducationChange}
-          // required
           />
         </Form.Group>
 
@@ -94,31 +113,28 @@ const Register3Intern = ({ onNext, formData, setFormData }) => {
             name="major"
             value={educationData.major}
             onChange={handleEducationChange}
-          // required
           />
         </Form.Group>
 
         <Form.Group className={styles.custom_form_group} controlId="field">
-          <Form.Label>Field<span className="text-danger"> *</span></Form.Label>
+          <Form.Label>Field</Form.Label>
           <Form.Control
             as={"textarea"}
             placeholder="Field"
             name="field"
             value={educationData.field}
             onChange={handleEducationChange}
-          // required
           />
         </Form.Group>
 
         <Form.Group className={styles.custom_form_group} controlId="GPA">
-          <Form.Label>GPA<span className="text-danger"> *</span></Form.Label>
+          <Form.Label>GPA</Form.Label>
           <Form.Control
             type="text"
             placeholder="GPA"
             name="GPA"
             value={educationData.GPA}
             onChange={handleEducationChange}
-          // required
           />
         </Form.Group>
 
@@ -132,7 +148,17 @@ const Register3Intern = ({ onNext, formData, setFormData }) => {
             name="position"
             value={applicationData.position}
             onChange={handleApplicationChange}
-          // required
+          />
+        </Form.Group>
+
+        <Form.Group className={styles.custom_form_group} controlId="expectedSalary">
+          <Form.Label>Expected Salary<span className="text-danger"> *</span></Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Expected Salary"
+            name="expectedSalary"
+            value={applicationData.expectedSalary}
+            onChange={handleApplicationChange}
           />
         </Form.Group>
 
@@ -144,7 +170,6 @@ const Register3Intern = ({ onNext, formData, setFormData }) => {
             name="internshipPeriod"
             value={applicationData.internshipPeriod}
             onChange={handleApplicationChange}
-          // required
           />
         </Form.Group>
 
@@ -156,12 +181,11 @@ const Register3Intern = ({ onNext, formData, setFormData }) => {
             name="applicationReason"
             value={applicationData.applicationReason}
             onChange={handleApplicationChange}
-          // required
           />
         </Form.Group>
 
         <br />
-        <Form.Group className="custom-button">
+        <Form.Group className={styles.custom_button}>
           <Button className="primary col-12" type="submit">
             Next
           </Button>

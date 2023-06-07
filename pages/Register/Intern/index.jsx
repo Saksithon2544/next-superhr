@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Button, Form, Container, ProgressBar } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
+import Swal from 'sweetalert2';
 
 // Components
 import Intern2 from './Intern2';
@@ -21,8 +22,8 @@ function RegisterIntern() {
   const router = useRouter();
 
   const onSubmit = (data) => {
-    // console.log(data);
     const { username, email } = router.query;
+    
     setFormData({ ...data, fileNames: Object.keys(data), username, email }); // Add fileNames to formData
     nextStep();
   };
@@ -56,7 +57,19 @@ function RegisterIntern() {
     fetchNationalities();
   }, []);
 
-
+  const showErrorAndNotify = (field, message) => {
+    Swal.fire({
+      icon: 'warning',
+      title: 'Warning',
+      text: message,
+      confirmButtonText: 'OK',
+    });
+    return (
+      <>
+        {errors[field] && <p className="text-danger">{errors[field].message}</p>}
+      </>
+    );
+  };
 
 
   return (
@@ -77,25 +90,25 @@ function RegisterIntern() {
               <Form.Group className={styles.custom_form_group} controlId="prefix">
                 <Form.Label>Prefix<span className="text-danger"> *</span></Form.Label>
                 <Form.Control type="text" placeholder="Mr. / Ms." {...register('prefix', { required: 'This field is required' })} />
-                {errors.prefix && <p className="text-danger">{errors.prefix.message}</p>}
+                {errors.prefix && showErrorAndNotify('prefix', 'This Prefix is required')}
               </Form.Group>
 
               <Form.Group className={styles.custom_form_group} controlId="fullNameThai">
                 <Form.Label>Full name (Thai name)<span className="text-danger"> *</span></Form.Label>
                 <Form.Control type="text" placeholder="Thai name" {...register('fullNameThai', { required: 'This field is required' })} />
-                {errors.fullNameThai && <p className="text-danger">{errors.fullNameThai.message}</p>}
+                {errors.fullNameThai && showErrorAndNotify('fullNameThai', 'This Full name (Thai name) is required')}
               </Form.Group>
 
               <Form.Group className={styles.custom_form_group} controlId="fullNameEng">
                 <Form.Label>Full name (English name)<span className="text-danger"> *</span></Form.Label>
                 <Form.Control type="text" placeholder="English name" {...register('fullNameEng', { required: 'This field is required' })} />
-                {errors.fullNameEng && <p className="text-danger">{errors.fullNameEng.message}</p>}
+                {errors.fullNameEng && showErrorAndNotify('fullNameEng', 'This Full name (English name) is required')}
               </Form.Group>
 
               <Form.Group className={styles.custom_form_group} controlId="idNumber">
                 <Form.Label>ID number/ID Passport<span className="text-danger"> *</span></Form.Label>
                 <Form.Control type="text" placeholder="ID number/ID Passport" {...register('idNumber', { required: 'This field is required' })} />
-                {errors.idNumber && <p className="text-danger">{errors.idNumber.message}</p>}
+                {errors.idNumber && showErrorAndNotify('idNumber', 'This ID number/ID Passport is required')}
               </Form.Group>
 
               <Form.Group className={styles.custom_form_group} controlId="gender">
@@ -103,27 +116,26 @@ function RegisterIntern() {
                 <Form.Check inline label="Female" type="radio" name="gender" value={"Female"} {...register('gender', { required: 'Please select a gender' })} />
                 <Form.Check inline label="Male" type="radio" name="gender" value={"Male"} {...register('gender', { required: 'Please select a gender' })} />
                 <Form.Check inline label="LGBTQIA+" type="radio" name="gender" value={"LGBTQIA+"} {...register('gender', { required: 'Please select a gender' })} />
-                {errors.gender && <p className="text-danger">{errors.gender.message}</p>}
+                {errors.gender && showErrorAndNotify('gender', 'This Gender is required')}
               </Form.Group>
 
 
               <Form.Group className={styles.custom_form_group} controlId="birthday">
-                <Form.Label>Date of birth<span className="text-danger"> *</span></Form.Label>
+                <Form.Label>Date of birth</Form.Label>
                 <Form.Control type="date" placeholder="DD/MM/YYYY"  {...register('birthday', { required: 'This field is required' })} />
               </Form.Group>
 
               <Form.Group className={styles.custom_form_group} controlId="maritalStatus">
-                <Form.Label>Marital status<span className="text-danger"> *</span></Form.Label> <br />
-                <Form.Check inline label="Single" type="radio" name="maritalStatus" value={"Single"} {...register('maritalStatus', { required: 'Please select a maritalStatus' })} />
-                <Form.Check inline label="Married" type="radio" name="maritalStatus" value={"Married"} {...register('maritalStatus', { required: 'Please select a maritalStatus' })} />
-                <Form.Check inline label="Divorced" type="radio" name="maritalStatus" value={"Divorced"} {...register('maritalStatus', { required: 'Please select a maritalStatus' })} />
-                <Form.Check inline label="Widowed" type="radio" name="maritalStatus" value={"Widowed"} {...register('maritalStatus', { required: 'Please select a maritalStatus' })} />
-                {errors.maritalStatus && <p className="text-danger">{errors.maritalStatus.message}</p>}
+                <Form.Label>Marital status</Form.Label> <br />
+                <Form.Check inline label="Single" type="radio" name="maritalStatus" value={"Single"} {...register('maritalStatus')} />
+                <Form.Check inline label="Married" type="radio" name="maritalStatus" value={"Married"} {...register('maritalStatus')} />
+                <Form.Check inline label="Divorced" type="radio" name="maritalStatus" value={"Divorced"} {...register('maritalStatus')} />
+                <Form.Check inline label="Widowed" type="radio" name="maritalStatus" value={"Widowed"} {...register('maritalStatus')} />
               </Form.Group>
 
               <Form.Group className={styles.custom_form_group} controlId="religion">
                 <Form.Label>Religion</Form.Label>
-                <Form.Control as="select" defaultValue={""} {...register('religion', { required: 'Please select a religion' })}>
+                <Form.Control as="select" defaultValue={""} {...register('religion')}>
                   <option value={""} disabled>Select religion</option>
                   <option value={"Buddhism"}>Buddhism</option>
                   <option value={"Christianity"}>Christianity</option>
@@ -133,12 +145,11 @@ function RegisterIntern() {
                   <option value={"Sikhism"}>Sikhism</option>
                   <option value={"Other"}>Other</option>
                 </Form.Control>
-                {errors.religion && <p className="text-danger">{errors.religion.message}</p>}
               </Form.Group>
 
               <Form.Group className={styles.custom_form_group} controlId="nationality">
                 <Form.Label>Nationality</Form.Label>
-                <Form.Control as="select" defaultValue={""} {...register('nationality', { required: 'Please select a nationality' })}>
+                <Form.Control as="select" defaultValue={""} {...register('nationality')}>
                   <option value="" disabled>Select nationality</option>
                   {nationalities
                     .sort((a, b) => a.name.localeCompare(b.name))
@@ -148,10 +159,9 @@ function RegisterIntern() {
                       </option>
                     ))}
                 </Form.Control>
-                {errors.nationality && <p className="text-danger">{errors.nationality.message}</p>}
               </Form.Group>
               <br />
-              <Form.Group className="custom-button">
+              <Form.Group className={styles.custom_button}>
                 <Button className="primary col-12" type="submit">
                   Next
                 </Button>
