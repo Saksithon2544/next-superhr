@@ -1696,46 +1696,46 @@ function Home(props) {
   return (
     <Home1 className={props.className}>
       <Frame132>
-        <Image8 src={Image8Image} loading="lazy" alt={'image 8'} />
+        <Image8 src={Image8Image.src} loading="lazy" alt={'image 8'} />
         <Frame133>
           <Frame127>
             <Frame131>
               <Search>{`Search`}</Search>
               <Search1>
-                <Vector src={VectorImage} loading="lazy" alt={'Vector'} />
-                <Vector1 src={Vector1Image} loading="lazy" alt={'Vector'} />
+                <Vector src={VectorImage.src} loading="lazy" alt={'Vector'} />
+                <Vector1 src={Vector1Image.src} loading="lazy" alt={'Vector'} />
               </Search1>
             </Frame131>
           </Frame127>
           <Group12>
-            <Ellipse6 src={Ellipse6Image} loading="lazy" alt={'Ellipse 6'} />
+            <Ellipse6 src={Ellipse6Image.src} loading="lazy" alt={'Ellipse 6'} />
             <PhChatCircleDotsLigh>
-              <Vector2 src={Vector2Image} loading="lazy" alt={'Vector'} />
+              <Vector2 src={Vector2Image.src} loading="lazy" alt={'Vector'} />
             </PhChatCircleDotsLigh>
           </Group12>
         </Frame133>
         <Group28>
-          <Ellipse17 src={Ellipse17Image} loading="lazy" alt={'Ellipse 17'} />
+          <Ellipse17 src={Ellipse17Image.src} loading="lazy" alt={'Ellipse 17'} />
           <Q2>{`2`}</Q2>
         </Group28>
       </Frame132>
-      <Line6 src={Line6Image} loading="lazy" alt={'Line 6'} />
+      <Line6 src={Line6Image.src} loading="lazy" alt={'Line 6'} />
       <Frame280>
         <Group27>
           <All>{`All `}</All>
-          <Line8 src={Line8Image} loading="lazy" alt={'Line 8'} />
+          <Line8 src={Line8Image.src} loading="lazy" alt={'Line 8'} />
         </Group27>
         <Signed>{`Signed`}</Signed>
         <RequireAction>{`Require action`}</RequireAction>
         <RequestChanges>{`Request changes`}</RequestChanges>
       </Frame280>
       <Group14>
-        <Subtract src={SubtractImage} loading="lazy" alt={'Subtract'} />
+        <Subtract src={SubtractImage.src} loading="lazy" alt={'Subtract'} />
         <ImportBotton>
-          <Ellipse8 src={Ellipse8Image} loading="lazy" alt={'Ellipse 8'} />
+          <Ellipse8 src={Ellipse8Image.src} loading="lazy" alt={'Ellipse 8'} />
           <Plus>
-            <Vector3 src={Vector3Image} loading="lazy" alt={'Vector'} />
-            <Vector4 src={Vector4Image} loading="lazy" alt={'Vector'} />
+            <Vector3 src={Vector3Image.src} loading="lazy" alt={'Vector'} />
+            <Vector4 src={Vector4Image.src} loading="lazy" alt={'Vector'} />
           </Plus>
         </ImportBotton>
       </Group14>
@@ -1755,17 +1755,17 @@ function Home(props) {
         <Frame299>
           <Frame140>
             <File>
-              <Vector5 src={Vector5Image} loading="lazy" alt={'Vector'} />
-              <Vector6 src={Vector6Image} loading="lazy" alt={'Vector'} />
+              <Vector5 src={Vector5Image.src} loading="lazy" alt={'Vector'} />
+              <Vector6 src={Vector6Image.src} loading="lazy" alt={'Vector'} />
             </File>
             <FinanceContract>{`Finance contract`}</FinanceContract>
           </Frame140>
           <Frame298>
             <IcBaselineStar>
-              <Vector7 src={Vector7Image} loading="lazy" alt={'Vector'} />
+              <Vector7 src={Vector7Image.src} loading="lazy" alt={'Vector'} />
             </IcBaselineStar>
             <PhDotsThreeVerticalB>
-              <Vector8 src={Vector8Image} loading="lazy" alt={'Vector'} />
+              <Vector8 src={Vector8Image.src} loading="lazy" alt={'Vector'} />
             </PhDotsThreeVerticalB>
           </Frame298>
         </Frame299>
@@ -1786,17 +1786,17 @@ function Home(props) {
         <Frame301>
           <Frame1401>
             <File1>
-              <Vector9 src={Vector9Image} loading="lazy" alt={'Vector'} />
-              <Vector10 src={Vector10Image} loading="lazy" alt={'Vector'} />
+              <Vector9 src={Vector9Image.src} loading="lazy" alt={'Vector'} />
+              <Vector10 src={Vector10Image.src} loading="lazy" alt={'Vector'} />
             </File1>
             <EmploymentAgreement>{`Employment agreement`}</EmploymentAgreement>
           </Frame1401>
           <Frame300>
             <IcBaselineStar1>
-              <Vector11 src={Vector11Image} loading="lazy" alt={'Vector'} />
+              <Vector11 src={Vector11Image.src} loading="lazy" alt={'Vector'} />
             </IcBaselineStar1>
             <PhDotsThreeVerticalB1>
-              <Vector12 src={Vector12Image} loading="lazy" alt={'Vector'} />
+              <Vector12 src={Vector12Image.src} loading="lazy" alt={'Vector'} />
             </PhDotsThreeVerticalB1>
           </Frame300>
         </Frame301>
@@ -1817,49 +1817,49 @@ function Home(props) {
         <Frame303>
           <Frame1402>
             <File2>
-              <Vector13 src={Vector13Image} loading="lazy" alt={'Vector'} />
-              <Vector14 src={Vector14Image} loading="lazy" alt={'Vector'} />
+              <Vector13 src={Vector13Image.src} loading="lazy" alt={'Vector'} />
+              <Vector14 src={Vector14Image.src} loading="lazy" alt={'Vector'} />
             </File2>
             <ContractBook>{`Contract book`}</ContractBook>
           </Frame1402>
           <Frame302>
             <IcBaselineStar2>
-              <Vector15 src={Vector15Image} loading="lazy" alt={'Vector'} />
+              <Vector15 src={Vector15Image.src} loading="lazy" alt={'Vector'} />
             </IcBaselineStar2>
             <PhDotsThreeVerticalB2>
-              <Vector16 src={Vector16Image} loading="lazy" alt={'Vector'} />
+              <Vector16 src={Vector16Image.src} loading="lazy" alt={'Vector'} />
             </PhDotsThreeVerticalB2>
           </Frame302>
         </Frame303>
       </Frame139>
       <AlignJustify>
-        <Vector17 src={Vector17Image} loading="lazy" alt={'Vector'} />
-        <Vector18 src={Vector18Image} loading="lazy" alt={'Vector'} />
-        <Vector19 src={Vector19Image} loading="lazy" alt={'Vector'} />
-        <Vector20 src={Vector20Image} loading="lazy" alt={'Vector'} />
+        <Vector17 src={Vector17Image.src} loading="lazy" alt={'Vector'} />
+        <Vector18 src={Vector18Image.src} loading="lazy" alt={'Vector'} />
+        <Vector19 src={Vector19Image.src} loading="lazy" alt={'Vector'} />
+        <Vector20 src={Vector20Image.src} loading="lazy" alt={'Vector'} />
       </AlignJustify>
       <User>
-        <Vector21 src={Vector21Image} loading="lazy" alt={'Vector'} />
-        <Vector22 src={Vector22Image} loading="lazy" alt={'Vector'} />
+        <Vector21 src={Vector21Image.src} loading="lazy" alt={'Vector'} />
+        <Vector22 src={Vector22Image.src} loading="lazy" alt={'Vector'} />
       </User>
       <FileText>
-        <Vector23 src={Vector23Image} loading="lazy" alt={'Vector'} />
-        <Vector24 src={Vector24Image} loading="lazy" alt={'Vector'} />
-        <Vector25 src={Vector25Image} loading="lazy" alt={'Vector'} />
-        <Vector26 src={Vector26Image} loading="lazy" alt={'Vector'} />
-        <Vector27 src={Vector27Image} loading="lazy" alt={'Vector'} />
+        <Vector23 src={Vector23Image.src} loading="lazy" alt={'Vector'} />
+        <Vector24 src={Vector24Image.src} loading="lazy" alt={'Vector'} />
+        <Vector25 src={Vector25Image.src} loading="lazy" alt={'Vector'} />
+        <Vector26 src={Vector26Image.src} loading="lazy" alt={'Vector'} />
+        <Vector27 src={Vector27Image.src} loading="lazy" alt={'Vector'} />
       </FileText>
       <Edit>
-        <Vector28 src={Vector28Image} loading="lazy" alt={'Vector'} />
-        <Vector29 src={Vector29Image} loading="lazy" alt={'Vector'} />
+        <Vector28 src={Vector28Image.src} loading="lazy" alt={'Vector'} />
+        <Vector29 src={Vector29Image.src} loading="lazy" alt={'Vector'} />
       </Edit>
       <AddDocument>{`add document`}</AddDocument>
       <Bell>
-        <Vector30 src={Vector30Image} loading="lazy" alt={'Vector'} />
-        <Vector31 src={Vector31Image} loading="lazy" alt={'Vector'} />
+        <Vector30 src={Vector30Image.src} loading="lazy" alt={'Vector'} />
+        <Vector31 src={Vector31Image.src} loading="lazy" alt={'Vector'} />
       </Bell>
       <Group281>
-        <Ellipse171 src={Ellipse171Image} loading="lazy" alt={'Ellipse 17'} />
+        <Ellipse171 src={Ellipse171Image.src} loading="lazy" alt={'Ellipse 17'} />
         <Q4>{`4`}</Q4>
       </Group281>
       <Frame288>
@@ -1870,11 +1870,11 @@ function Home(props) {
             <Frame282>
               <Frame135>
                 <Folder>
-                  <Vector32 src={Vector32Image} loading="lazy" alt={'Vector'} />
+                  <Vector32 src={Vector32Image.src} loading="lazy" alt={'Vector'} />
                 </Folder>
                 <MyContracts>{`My contracts`}</MyContracts>
                 <ChevronDown>
-                  <Vector33 src={Vector33Image} loading="lazy" alt={'Vector'} />
+                  <Vector33 src={Vector33Image.src} loading="lazy" alt={'Vector'} />
                 </ChevronDown>
               </Frame135>
             </Frame282>
