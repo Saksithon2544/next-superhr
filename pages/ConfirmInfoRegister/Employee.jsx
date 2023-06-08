@@ -30,6 +30,7 @@ const ProfileInfo = ({ formData }) => {
 
 const ConfirmInfoRegisterEmployee = ({ formData }) => {
   const router = useRouter();
+  console.log(formData);
 
   const handleConfirm = () => {
     Swal.fire({
@@ -68,7 +69,7 @@ const ConfirmInfoRegisterEmployee = ({ formData }) => {
         data.append('internshipPeriod', formData.internshipPeriod);
         data.append('applicationReason', formData.applicationReason);
         // Append other form fields
-        
+
 
         // Append files
         data.append('resumeCv', formData.resumeCv);
@@ -116,6 +117,8 @@ const ConfirmInfoRegisterEmployee = ({ formData }) => {
       </Container>
     );
   }
+
+  console.log(formData);
 
   return (
     <Container className={styles.custom_form}>
@@ -188,9 +191,125 @@ const ConfirmInfoRegisterEmployee = ({ formData }) => {
             </Button>
           </Card.Header>
           <Card.Body className={styles.custom_card_body}>
-            {/* Display social security fund details */}
+            {formData.socialSecurity.paymentType === 'selfPay' &&
+              <>
+                <p>
+                  <b>Payment by:</b> {formData.socialSecurity.paymentType}
+                </p>
+                <p>
+                  <b>Type:</b> {formData.socialSecurity.self_type}
+                </p>
+                <p>
+                  <b>Tax Detail:</b> {formData.socialSecurity.self_textDetails}
+                </p>
+                <p>
+                  <b>Company Name:</b> {formData.socialSecurity.self_companyName}
+                </p>
+                <p>
+                  <b>Registration Number:</b> {formData.socialSecurity.self_registrationNumber}
+                </p>
+                <p>
+                  <b>Registration Number:</b> {formData.socialSecurity.self_registrationAddress}
+                </p>
+              </>
+            }
+
+            {formData.socialSecurity.paymentType === 'companyPay' &&
+              <>
+                <p>
+                  <b>Payment by:</b> {formData.socialSecurity.paymentType}
+                </p>
+                <p>
+                  <b>Joining Date:</b> {formData.socialSecurity.company_joiningDate}
+                </p>
+
+                {formData.socialSecurity.company_hospital === 'hospitalMember' &&
+                  <>
+                    <p>
+                      <b>Member with:</b> {formData.socialSecurity. company_hospitalMember_1}
+                    </p>
+                  </>
+                }
+
+                {formData.socialSecurity.company_hospital === 'changeHospital' &&
+                  <>
+                    <p>
+                      <b>Change Hospital/Non-member</b>
+                    </p>
+                    <p>
+                      <b>1.</b> {formData.socialSecurity. company_changeHospita_1}
+                    </p>
+                    <p>
+                      <b>2.</b> {formData.socialSecurity. company_changeHospita_2}
+                    </p>
+                    <p>
+                      <b>3.</b> {formData.socialSecurity. company_changeHospita_3}
+                    </p>
+                  </>
+                }
+                <h5 className={`text-start ${styles.custom_form_group} mt-5`}>TAX Detail</h5>
+                <p>
+                  <b>Income before joining:</b> {formData.socialSecurity.company_incomeBeforeJoining}
+                </p>
+                <p>
+                  <b>Withholding tax before joining:</b> {formData.socialSecurity.company_withholdingTaxBeforeJoining}
+                </p>
+                <p>
+                  <b>Married Full Name:</b> {formData.socialSecurity.company_marriedFullName}
+                </p>
+
+                <h5 className={`text-start ${styles.custom_form_group} mt-5`}>Children (Age 1-20 years, Born after year 2018)</h5>
+                <p>
+                  <b>First child's name:</b> {formData.socialSecurity.company_children[0].name} , {formData.socialSecurity.company_children[0].bornAfterYear}
+                </p>
+                <p>
+                  <b>Second child's name:</b> {formData.socialSecurity.company_children[1].name} , {formData.socialSecurity.company_children[1].bornAfterYear}
+                </p>
+                <p>
+                  <b>Third child's name:</b> {formData.socialSecurity.company_children[2].name} , {formData.socialSecurity.company_children[2].bornAfterYear}
+                </p>
+                <p>
+                  <b>Parents:</b> {formData.socialSecurity.company_parents}
+                </p>
+                <p>
+                  <b>Disabled Person:</b> {formData.socialSecurity.company_disabledPerson}
+                </p>
+                <p>
+                  <b>Life insurance and Endowment (100,000 THB):</b> {formData.socialSecurity.company_lifeInsurance}
+                </p>
+                <p>
+                  <b>Health insurance / Accident (25,000 THB):</b> {formData.socialSecurity.company_healthInsurance}
+                </p>
+                <p>
+                  <b>Parents life insurance (15,000 THB):</b> {formData.socialSecurity.company_parentsLifeInsurance}
+                </p>
+                <p>
+                  <b>Annuity insurance (15% of income / 200,000 THB):</b> {formData.socialSecurity.company_annuityInsurance}
+                </p>
+                <p>
+                  <b>RMF (30% of Net income / 500,000 THB):</b> {formData.socialSecurity.company_rmf}
+                </p>
+                <p>
+                  <b>SSF Super saving fund (30% of Net income / 200,000 THB):</b> {formData.socialSecurity.company_ssf}
+                </p>
+                <p>
+                  <b>Provident fund PVD (15% of Net income / 500,000 THB):</b> {formData.socialSecurity.company_providentFund}
+                </p>
+
+                <h5 className={`text-start ${styles.custom_form_group} mt-5`}>Donation</h5>
+                <p>
+                  <b>1.</b> {formData.socialSecurity.company_donation1}
+                </p>
+                <p>
+                  <b>2.</b> {formData.socialSecurity.company_donation2}
+                </p>
+                <p>
+                  <b>3.</b> {formData.socialSecurity.company_donation3}
+                </p>
+              </>
+            }
           </Card.Body>
-        </Card> 
+        </Card>
 
         <Card className="mt-4 p-4">
           <Card.Header className={styles.card_header}>
@@ -219,7 +338,7 @@ const ConfirmInfoRegisterEmployee = ({ formData }) => {
               <b>Photo (Personal):</b> {formData.photoPersonal ? formData.photoPersonal.name : ''}
             </p>
             <p>
-              <b>Photo with ID Card:</b> {formData.photoWithIdCard ? formData.photoWithIdCard.name : ''}
+              <b>Photo with ID Card:</b> {formData.photoIdCard ? formData.photoIdCard.name : ''}
             </p>
             <p>
               <b>Bank book:</b> {formData.bankBook ? formData.bankBook.name : ''}

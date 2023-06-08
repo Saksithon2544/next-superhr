@@ -5,6 +5,7 @@ import { Form, Button } from 'react-bootstrap';
 import styles from './RegisterEmployee.module.css';
 
 const Employee4 = ({ onNext, formData, setFormData }) => {
+  // console.log(formData);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,14 +29,11 @@ const Employee4 = ({ onNext, formData, setFormData }) => {
       return;
     }
 
-    console.log(name, selectedFile)
-
     setFormData((prevData) => ({
       ...prevData,
       [name]: selectedFile,
     }));
 
-    console.log(formData)
   };
 
   const isValidFileType = (file) => {
