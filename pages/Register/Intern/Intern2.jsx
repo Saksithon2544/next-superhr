@@ -35,6 +35,9 @@ const Register2Intern = ({ onNext, formData, setFormData }) => {
       }else if (regex && !regex.test(form2Data[fieldName])) {
         showErrorAndNotify(label, errorMessage);
         return false;
+      }else if (!/^0[0-9]{9}$/.test(form2Data.contactPersonPhoneNumber) && form2Data.contactPersonPhoneNumber !== '') {
+        showErrorAndNotify('contactPersonPhoneNumber', 'Please enter a valid contact person phone number starting with 0 and containing 10 digits');
+        return false;
       }
 
       return true;
