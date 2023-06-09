@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
+import Swal from 'sweetalert2';
 
 // CSS
 import styles from './RegisterEmployee.module.css';
@@ -16,7 +17,24 @@ const Employee2 = ({ onNext, formData, setFormData }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(formData);
+   
+    // Check is required fields empty
+    const requiredFields = ['email', 'phoneNumber'];
+    const emptyFields = [];
+    requiredFields.forEach((field) => {
+      if (!form2Data[field]) {
+        emptyFields.push(field);
+      }
+    });
+    if (emptyFields.length > 0) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Warning',
+        html: `Please fill in the required fields: <span style="color:red">${emptyFields.join('<span style="color:black"> &</span> ')}</span>`,
+      });
+      return;
+    }
+    
     setFormData({ ...formData, ...form2Data });
     onNext();
   };
@@ -35,7 +53,7 @@ const Employee2 = ({ onNext, formData, setFormData }) => {
       <Form className={styles.custom_form} onSubmit={handleSubmit}>
         <br />
         <Form.Group className={styles.custom_form_group} controlId="idAddress">
-          <Form.Label>ID (House registration) Address<span className="text-danger"> *</span></Form.Label>
+          <Form.Label>ID (House registration) Address</Form.Label>
           <Form.Control
             type="text"
             placeholder="ID address"
@@ -47,7 +65,7 @@ const Employee2 = ({ onNext, formData, setFormData }) => {
         </Form.Group>
 
         <Form.Group className={styles.custom_form_group} controlId="currentAddress">
-          <Form.Label>Current Address<span className="text-danger"> *</span></Form.Label>
+          <Form.Label>Current Address</Form.Label>
           <Form.Control
             as={"textarea"}
             placeholder="Current address"
@@ -83,7 +101,7 @@ const Employee2 = ({ onNext, formData, setFormData }) => {
         </Form.Group>
 
         <Form.Group className={styles.custom_form_group} controlId="position">
-          <Form.Label>Position<span className="text-danger"> *</span></Form.Label>
+          <Form.Label>Position</Form.Label>
           <Form.Control
             type="text"
             placeholder="Position"
@@ -95,7 +113,7 @@ const Employee2 = ({ onNext, formData, setFormData }) => {
         </Form.Group>
 
         <Form.Group className={styles.custom_form_group} controlId="client">
-          <Form.Label>Client<span className="text-danger"> *</span></Form.Label>
+          <Form.Label>Client</Form.Label>
           <Form.Control
             type="text"
             placeholder="Client"

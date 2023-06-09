@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Form, Container, ProgressBar } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
+import { useRouter } from 'next/router';
+import Swal from 'sweetalert2';
 
 // Components
 import Employee2 from './Employee2';
@@ -16,9 +18,30 @@ function Employee1() {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [formData, setFormData] = useState({});
 
+  const router = useRouter();
+
   const onSubmit = (data) => {
-    // console.log(data);
-    setFormData({ ...data, fileNames: Object.keys(data) }); // Add fileNames to formData
+
+    // Check is required fields empty
+    const requiredFields = ['prefix', 'fullNameThai', 'fullNameEng', 'gender'];
+    const emptyFields = [];
+    requiredFields.forEach((field) => {
+      if (!data[field]) {
+        emptyFields.push(field);
+      }
+    });
+    if (emptyFields.length > 0) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Warning',
+        html: `Please fill in the required fields: <span style="color:red">${emptyFields.join('<span style="color:black"> &</span> ')}</span>`,
+      });
+      return;
+    }
+
+    const { username, email } = router.query;
+    
+    setFormData({ ...data, fileNames: Object.keys(data), username, email }); // Add fileNames to formData
     nextStep();
   };
 
@@ -85,7 +108,7 @@ function Employee1() {
               </Form.Group>
 
               <Form.Group className={styles.custom_form_group} controlId="idNumber">
-                <Form.Label>ID number/ID Passport<span className="text-danger"> *</span></Form.Label>
+                <Form.Label>ID number/ID Passport</Form.Label>
                 <Form.Control type="text" placeholder="ID number/ID Passport" {...register('idNumber')} />
               </Form.Group>
 
@@ -97,12 +120,12 @@ function Employee1() {
               </Form.Group>
 
               <Form.Group className={styles.custom_form_group} controlId="birthday">
-                <Form.Label>Date of birth<span className="text-danger"> *</span></Form.Label>
-                <Form.Control type="date" placeholder="DD/MM/YYYY"  {...register('birthday')} />
+                <Form.Label>Date of birth</Form.Label>
+                <Form.Control type="date" placeholder="DD/MM/YYYY" />
               </Form.Group>
 
               <Form.Group className={styles.custom_form_group} controlId="maritalStatus">
-                <Form.Label>Marital status<span className="text-danger"> *</span></Form.Label> <br />
+                <Form.Label>Marital status</Form.Label> <br />
                 <Form.Check inline label="Single" type="radio" name="maritalStatus" value={"Single"} {...register('maritalStatus')} />
                 <Form.Check inline label="Married" type="radio" name="maritalStatus" value={"Married"} {...register('maritalStatus')} />
                 <Form.Check inline label="Divorced" type="radio" name="maritalStatus" value={"Divorced"} {...register('maritalStatus')} />

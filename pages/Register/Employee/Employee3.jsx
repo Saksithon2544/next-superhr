@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
+import Swal from 'sweetalert2';
 
 // CSS
 import styles from './RegisterEmployee.module.css';
@@ -47,6 +48,23 @@ const Employee3 = ({ onNext, FormData, setFormData }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // Check is required fields empty
+    const requiredFields = ['paymentType'];
+    const emptyFields = [];
+    requiredFields.forEach((field) => {
+      if (!FormData2.socialSecurity[field]) {
+        emptyFields.push(field);
+      }
+    });
+    if (emptyFields.length > 0) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Warning',
+        html: `Please fill in the required fields: <span style="color:red">${emptyFields.join('<span style="color:black"> &</span> ')}</span>`,
+      });
+      return;
+    }
    
     setFormData({ ...FormData, ...FormData2 });
     onNext();
