@@ -11,20 +11,52 @@ const Register4JobSeeker = ({ onNext, formData, setFormData }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Check is required fields empty
-    const requiredFields = ['resumeCv', 'transcript'];
-    const emptyFields = [];
-    requiredFields.forEach((field) => {
-      if (!formData[field]) {
-        emptyFields.push(field);
-      }
-    });
-    if (emptyFields.length > 0) {
+    const showErrorAndNotify = (fieldName, message) => {
       Swal.fire({
         icon: 'warning',
         title: 'Warning',
-        html: `Please fill in the required fields: <span style="color:red">${emptyFields.join('<span style="color:black"> &</span> ')}</span>`,
+        html: `${message}`,
       });
+    };
+
+    const validateField = (fieldName, label, regex, errorMessage) => {
+      if (!formData[fieldName]) {
+        const requiredErrorMessage = `This <span style="color:red">${label}</span> is required`;
+        showErrorAndNotify(label, requiredErrorMessage);
+        return false;
+      } else if (regex && !regex.test(formData[fieldName])) {
+        showErrorAndNotify(label, errorMessage);
+        return false;
+      }
+      return true;
+    };
+
+    const validateRequiredFields = () => {
+      const requiredFields = [
+        {
+          fieldName: 'resumeCv',
+          label: 'Resume / CV',
+          errorMessage: 'Please enter a valid resume / cv',
+        },
+        {
+          fieldName: 'transcript',
+          label: 'Transcript',
+          errorMessage: 'Please enter a valid transcript',
+        },
+      ];
+
+      for (const { fieldName, label, regex, errorMessage } of requiredFields) {
+        if (!validateField(fieldName, label, regex, errorMessage)) {
+          return false;
+        }
+      }
+
+      return true;
+    };
+
+    const isRequiredFieldsValid = validateRequiredFields();
+
+    if (!isRequiredFieldsValid) {
       return;
     }
 
@@ -36,8 +68,13 @@ const Register4JobSeeker = ({ onNext, formData, setFormData }) => {
     const { name, files } = e.target;
     const selectedFile = files[0];
 
+    // Check if file is selected
+    if (!selectedFile) {
+      return;
+    }
+
     // Check the file type
-    if (selectedFile && !isValidFileType(selectedFile)) {
+    if (!isValidFileType(selectedFile)) {
       // Display error notification with SweetAlert2
       Swal.fire({
         icon: 'error',
@@ -46,8 +83,6 @@ const Register4JobSeeker = ({ onNext, formData, setFormData }) => {
       });
       return;
     }
-
-    console.log(name, selectedFile)
 
     setFormData((prevData) => ({
       ...prevData,

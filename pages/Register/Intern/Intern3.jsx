@@ -49,7 +49,6 @@ const Register3Intern = ({ onNext, formData, setFormData }) => {
 
     const validateRequiredFields = () => {
       const requiredFields = [
-        // 'university', 'educationLevel', 'major', 'position', 'internshipPeriod', 'applicationReason'
         { fieldName: 'university', label: 'University', regex: /^[a-zA-Z0-9\s,'-]*$/, errorMessage: 'Please enter a valid university name' },
         { fieldName: 'educationLevel', label: 'Education Level', regex: /^[a-zA-Z0-9\s,'-]*$/, errorMessage: 'Please enter a valid education level' },
         { fieldName: 'major', label: 'Major', regex: /^[a-zA-Z0-9\s,'-]*$/, errorMessage: 'Please enter a valid major' },
@@ -73,9 +72,6 @@ const Register3Intern = ({ onNext, formData, setFormData }) => {
     if (!isValid) {
       return;
     }
-
-
-
 
     const updatedFormData = {
       education: educationData,

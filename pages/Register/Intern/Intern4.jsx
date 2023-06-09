@@ -83,8 +83,6 @@ const Register4Intern = ({ onNext, formData, setFormData }) => {
       return;
     }
 
-    console.log(name, selectedFile);
-
     setFormData((prevData) => ({
       ...prevData,
       [name]: selectedFile,

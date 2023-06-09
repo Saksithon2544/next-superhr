@@ -21,27 +21,53 @@ function RegisterJobSeeker() {
   const router = useRouter();
 
   const onSubmit = (data) => {
-    
-    // Check is required fields empty
-    const requiredFields = ['prefix', 'fullNameThai', 'fullNameEng', 'gender'];
-    const emptyFields = [];
-    requiredFields.forEach((field) => {
-      if (!data[field]) {
-        emptyFields.push(field);
-      }
-    });
-    if (emptyFields.length > 0) {
+    const showErrorAndNotify = (fieldName, message) => {
       Swal.fire({
         icon: 'warning',
         title: 'Warning',
-        html: `Please fill in the required fields: <span style="color:red">${emptyFields.join('<span style="color:black"> &</span> ')}</span>`,
+        html: `${message}`,
       });
-      return;
-    }
+    };
+
+    const validateField = (fieldName, label) => {
+      if (!data[fieldName]) {
+        showErrorAndNotify(label, `This <span style="color:red">${label}</span> is required`);
+        return false;
+      } else if (!/^[\p{Letter}\sก-๙เแะโใไ]+$/u.test(data[fieldName])) {
+        showErrorAndNotify(label, `This <span style="color:red">${label}</span> should contain letters only`);
+        return false;
+      }
+      return true;
+    };
+
+    const validateRequiredFields = () => {
+      const requiredFields = [
+        { fieldName: 'prefix', label: 'Prefix' },
+        { fieldName: 'fullNameThai', label: 'Full Name (Thai)' },
+        { fieldName: 'fullNameEng', label: 'Full Name (English)' },
+        { fieldName: 'gender', label: 'Gender' },
+      ];
+
+      for (const field of requiredFields) {
+        const isValid = validateField(field.fieldName, field.label);
+        if (!isValid) {
+          return;
+        }
+      }
+
+      // ตรวจสอบฟิลด์ที่จำเป็นทั้งหมดและแจ้งเตือนผู้ใช้เมื่อมีข้อผิดพลาด
+      const isAllFieldsValid = requiredFields.every((field) => validateField(field.fieldName, field.label));
+      if (!isAllFieldsValid) {
+        return;
+      }
+
+      nextStep();
+    };
 
     const { username, email } = router.query;
     setFormData({ ...data, fileNames: Object.keys(data), username, email }); // Add fileNames to formData
-    nextStep();
+
+    validateRequiredFields();
   };
 
   const nextStep = () => {
@@ -88,7 +114,7 @@ function RegisterJobSeeker() {
               <h5 className={`text-start ${styles.custom_form_group}`}>Personal details</h5>
               <Form.Group className={styles.custom_form_group} controlId="prefix">
                 <Form.Label>Prefix<span className="text-danger"> *</span></Form.Label>
-                <Form.Control type="text" placeholder="Mr. / Ms." {...register('prefix')} />
+                <Form.Control type="text" placeholder="Prefix" {...register('prefix')} />
               </Form.Group>
 
               <Form.Group className={styles.custom_form_group} controlId="fullNameThai">
