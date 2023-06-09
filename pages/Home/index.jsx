@@ -30,7 +30,10 @@ function MydModalWithGrid(props) {
       </Modal.Header>
       <Modal.Body className="show-grid">
         <Container>
-          <Row>
+          <div>
+            <h4>Menu</h4>
+          </div>
+          {/* <Row>
             <Col xs={12} md={8}>
               .col-xs-12 .col-md-8
             </Col>
@@ -49,7 +52,7 @@ function MydModalWithGrid(props) {
             <Col xs={6} md={4}>
               .col-xs-6 .col-md-4
             </Col>
-          </Row>
+          </Row> */}
         </Container>
       </Modal.Body>
       <Modal.Footer>
@@ -84,14 +87,14 @@ const Home = () => {
         <br />
 
         <div className="d-flex justify-content-between align-items-center py-3 px-4">
-          <Col xl={8} md={8} sm={8}>
+          <div className="col-10">
             <Form>
               <input type="text" className="form-control" placeholder="Search" />
             </Form>
-          </Col>
-          <Col xl={4} md={4} sm={4}>
+          </div>
+          <div>
             <Button variant="primary">Message</Button>
-          </Col>
+          </div>
         </div>
 
         <h2 className="text-center mt-5">Documents</h2>
