@@ -1,44 +1,67 @@
 import React, { useState } from 'react';
-import { Container, OverlayTrigger, Popover, Button, Row, Col, Card, Form } from 'react-bootstrap';
+import { Container, Modal, Button, Row, Col, Card, Form } from 'react-bootstrap';
+import Tab from 'react-bootstrap/Tab';
+import Tabs from 'react-bootstrap/Tabs';
 import Head from 'next/head';
 
 // Image
 import logo from '../../src/images/Logo.png';
 
-const Home = () => {
-  const [showPopover, setShowPopover] = useState(false);
+function MydModalWithGrid(props) {
+  return (
+    <Modal {...props} aria-labelledby="contained-modal-title-vcenter">
+      <Modal.Header closeButton>
+        <Modal.Title id="contained-modal-title-vcenter">
+          <Container>
+            <Row className="mt-4">
+              <Col xs={12} md={12}>
+                <img src={logo.src} alt="Logo" className="img-fluid logo-image" />
+              </Col>
+            </Row>
+            <Row className="mt-4">
+              <Col xs={12} md={12}>
+                <Button variant="primary" className="btn-block col-12">
+                  + Create New
+                </Button>
+              </Col>
+            </Row>
+          </Container>
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body className="show-grid">
+        <Container>
+          <Row>
+            <Col xs={12} md={8}>
+              .col-xs-12 .col-md-8
+            </Col>
+            <Col xs={6} md={4}>
+              .col-xs-6 .col-md-4
+            </Col>
+          </Row>
 
-  const handlePopoverClose = () => {
-    setShowPopover(false);
-  };
-
-  const handlePopoverOpen = () => {
-    setShowPopover(true);
-  };
-
-  const popover = (
-    <Popover id="popover-basic">
-      <Popover.Content>
-        <ul className="list-unstyled">
-          <li>
-            <a href="#home" onClick={handlePopoverClose}>Home</a>
-          </li>
-          <li>
-            <a href="#about" onClick={handlePopoverClose}>About</a>
-          </li>
-          <li>
-            <a href="#services" onClick={handlePopoverClose}>Services</a>
-          </li>
-          <li>
-            <a href="#login" onClick={handlePopoverClose}>Login</a>
-          </li>
-          <li>
-            <a href="#signup" onClick={handlePopoverClose}>Sign up</a>
-          </li>
-        </ul>
-      </Popover.Content>
-    </Popover>
+          <Row>
+            <Col xs={6} md={4}>
+              .col-xs-6 .col-md-4
+            </Col>
+            <Col xs={6} md={4}>
+              .col-xs-6 .col-md-4
+            </Col>
+            <Col xs={6} md={4}>
+              .col-xs-6 .col-md-4
+            </Col>
+          </Row>
+        </Container>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button onClick={props.onHide}>Close</Button>
+      </Modal.Footer>
+    </Modal>
   );
+}
+
+const Home = () => {
+  const [modalShow, setModalShow] = useState(false);
+
 
   return (
     <>
@@ -47,33 +70,51 @@ const Home = () => {
         <link rel="stylesheet" href="/home.css" />
       </Head>
 
-
-      <div className="d-flex justify-content-between align-items-center py-3 px-4">
-        <OverlayTrigger trigger="click" placement="bottom" show={showPopover} overlay={popover}>
-          <Button variant="outline-primary" onClick={handlePopoverOpen}>
+      <Container>
+        <div className="d-flex justify-content-between align-items-center py-3 px-4">
+          <Button variant="primary" onClick={() => setModalShow(true)}>
             Menu
           </Button>
-        </OverlayTrigger>
-        <img src={logo.src} alt="Logo" className="img-fluid logo-image" />
-      </div>
 
-      <br />
+          <MydModalWithGrid show={modalShow} onHide={() => setModalShow(false)} />
 
-      <Container>
-        <Row className="mt-4">
-          <Col md={8}>
+          <img src={logo.src} alt="Logo" className="img-fluid logo-image" />
+        </div>
+
+        <br />
+
+        <div className="d-flex justify-content-between align-items-center py-3 px-4">
+          <Col xl={8} md={8} sm={8}>
             <Form>
               <input type="text" className="form-control" placeholder="Search" />
             </Form>
           </Col>
-          <Col md={4}>
+          <Col xl={4} md={4} sm={4}>
             <Button variant="primary">Message</Button>
           </Col>
-        </Row>
+        </div>
 
-        <br /> <br />
+        <h2 className="text-center mt-5">Documents</h2>
 
-        <h2 className="text-center">Documents</h2>
+        <Tabs
+          defaultActiveKey="profile"
+          id="justify-tab-example"
+          className="mb-3"
+          justify
+        >
+          <Tab eventKey="all" title="All">
+            Tab content for All
+          </Tab>
+          <Tab eventKey="completed" title="Completed">
+            Tab content for Completed
+          </Tab>
+          <Tab eventKey="requireAction" title="Require Action">
+            Tab content for Require Action
+          </Tab>
+          <Tab eventKey="requestChanges" title="Request Changes">
+            Tab content for Request Changes
+          </Tab>
+        </Tabs>
         <Row>
           <Col md={4}>
             <Card>
