@@ -24,23 +24,58 @@ const Register3Intern = ({ onNext, formData, setFormData }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
- 
-    // Check is required fields empty
-    const requiredFields = ['university', 'educationLevel', 'major', 'position', 'internshipPeriod', 'applicationReason'];
-    const emptyFields = [];
-    requiredFields.forEach((field) => {
-      if (!educationData[field] && !applicationData[field]) {
-        emptyFields.push(field);
-      }
-    });
-    if (emptyFields.length > 0) {
+
+    const showErrorAndNotify = (fieldName, message) => {
       Swal.fire({
         icon: 'warning',
         title: 'Warning',
-        html: `Please fill in the required fields: <span style="color:red">${emptyFields.join('<span style="color:black"> &</span> ')}</span>`,
+        html: `${message}`,
       });
+    };
+
+    const validateField = (fieldName, label, regex, errorMessage) => {
+      if (!educationData[fieldName] && !applicationData[fieldName]) {
+        const requiredErrorMessage = `This <span style="color:red">${label}</span> is required`;
+        showErrorAndNotify(label, requiredErrorMessage);
+        return false;
+      } else if (regex && !regex.test(educationData[fieldName] && applicationData[fieldName])) {
+        showErrorAndNotify(label, errorMessage);
+        return false;
+      }
+
+      return true;
+    };
+
+
+    const validateRequiredFields = () => {
+      const requiredFields = [
+        // 'university', 'educationLevel', 'major', 'position', 'internshipPeriod', 'applicationReason'
+        { fieldName: 'university', label: 'University', regex: /^[a-zA-Z0-9\s,'-]*$/, errorMessage: 'Please enter a valid university name' },
+        { fieldName: 'educationLevel', label: 'Education Level', regex: /^[a-zA-Z0-9\s,'-]*$/, errorMessage: 'Please enter a valid education level' },
+        { fieldName: 'major', label: 'Major', regex: /^[a-zA-Z0-9\s,'-]*$/, errorMessage: 'Please enter a valid major' },
+        { fieldName: 'position', label: 'Position', regex: /^[a-zA-Z0-9\s,'-]*$/, errorMessage: 'Please enter a valid position' },
+        { fieldName: 'expectedSalary', label: 'Expected Salary', regex: /^[a-zA-Z0-9\s,'-]*$/, errorMessage: 'Please enter a valid expected salary using digits only' },
+        { fieldName: 'internshipPeriod', label: 'Internship Period', regex: /^[a-zA-Z0-9\s,'-]*$/, errorMessage: 'Please enter a valid internship period' },
+        { fieldName: 'applicationReason', label: 'Application Reason', regex: /^[a-zA-Z0-9\s,'-]*$/, errorMessage: 'Please enter a valid application reason' },
+      ];
+
+      for (const field of requiredFields) {
+        const isValid = validateField(field.fieldName, field.label, field.regex, field.errorMessage);
+        if (!isValid) {
+          return false;
+        }
+      }
+
+      return true;
+    };
+
+    const isValid = validateRequiredFields();
+    if (!isValid) {
       return;
     }
+
+
+
 
     const updatedFormData = {
       education: educationData,
@@ -154,7 +189,7 @@ const Register3Intern = ({ onNext, formData, setFormData }) => {
         <Form.Group className={styles.custom_form_group} controlId="expectedSalary">
           <Form.Label>Expected Salary<span className="text-danger"> *</span></Form.Label>
           <Form.Control
-            type="text"
+            type="number"
             placeholder="Expected Salary"
             name="expectedSalary"
             value={applicationData.expectedSalary}
