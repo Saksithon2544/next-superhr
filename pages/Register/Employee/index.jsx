@@ -121,7 +121,7 @@ function Employee1() {
               <h5 className={`text-start ${styles.custom_form_group}`}>Personal details</h5>
               <Form.Group className={styles.custom_form_group} controlId="prefix">
                 <Form.Label>Prefix<span className="text-danger"> *</span></Form.Label>
-                <Form.Control type="text" placeholder="Mr. / Ms." {...register('prefix')} />
+                <Form.Control type="text" placeholder="Prefix" {...register('prefix')} />
               </Form.Group>
 
               <Form.Group className={styles.custom_form_group} controlId="fullNameThai">

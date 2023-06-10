@@ -17,21 +17,50 @@ const Employee2 = ({ onNext, formData, setFormData }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-   
-    // Check is required fields empty
-    const requiredFields = ['email', 'phoneNumber'];
-    const emptyFields = [];
-    requiredFields.forEach((field) => {
-      if (!form2Data[field]) {
-        emptyFields.push(field);
-      }
-    });
-    if (emptyFields.length > 0) {
+    
+    const showErrorAndNotify = (message) => {
       Swal.fire({
         icon: 'warning',
         title: 'Warning',
-        html: `Please fill in the required fields: <span style="color:red">${emptyFields.join('<span style="color:black"> &</span> ')}</span>`,
+        html: `${message}`,
       });
+    };
+
+    const validateField = (fieldName, label, regex, errorMessage) => {
+      if (!form2Data[fieldName]) {
+        const requiredErrorMessage = `This <span style="color:red">${label}</span> is required`;
+        showErrorAndNotify(requiredErrorMessage);
+        return false;
+      } else if (regex && !regex.test(form2Data[fieldName])) {
+        showErrorAndNotify(errorMessage);
+        return false;
+      } else if (!/^0[0-9]{9}$/.test(form2Data.phoneNumber) && form2Data.phoneNumber !== '') {
+        showErrorAndNotify('Please enter a valid phone number starting with 0 and containing 10 digits');
+        return false;
+      }
+
+      return true;
+    };
+
+    const validateRequiredFields = () => {
+      const requiredFields = [
+        { fieldName: 'email', label: 'Email', regex: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/, errorMessage: 'Please enter a valid email address in the format example@example.com' },
+        { fieldName: 'phoneNumber', label: 'Phone Number', regex: /^0[0-9]{9}$/, errorMessage: 'Please enter a valid phone number starting with 0 and containing 10 digits' },
+        { fieldName: 'position', label: 'Position', regex: null, errorMessage: null },
+      ];
+
+      for (const field of requiredFields) {
+        const isValid = validateField(field.fieldName, field.label, field.regex, field.errorMessage);
+        if (!isValid) {
+          return false;
+        }
+      }
+
+      return true;
+    };
+
+    const isValid = validateRequiredFields();
+    if (!isValid) {
       return;
     }
     
@@ -101,7 +130,7 @@ const Employee2 = ({ onNext, formData, setFormData }) => {
         </Form.Group>
 
         <Form.Group className={styles.custom_form_group} controlId="position">
-          <Form.Label>Position</Form.Label>
+          <Form.Label>Position<span className="text-danger"> *</span></Form.Label>
           <Form.Control
             type="text"
             placeholder="Position"

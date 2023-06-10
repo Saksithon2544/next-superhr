@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 // CSS
 import styles from './RegisterEmployee.module.css';
 
-const Employee3 = ({ onNext, FormData, setFormData }) => {
+const Employee3 = ({ onNext, formData, setFormData }) => {
 
   const [FormData2, setFormData2] = useState({
     socialSecurity: {
@@ -43,30 +43,100 @@ const Employee3 = ({ onNext, FormData, setFormData }) => {
       company_donation2: '',
       company_donation3: '',
     },
-
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Check is required fields empty
-    const requiredFields = ['paymentType'];
-    const emptyFields = [];
-    requiredFields.forEach((field) => {
-      if (!FormData2.socialSecurity[field]) {
-        emptyFields.push(field);
-      }
-    });
-    if (emptyFields.length > 0) {
+    const showErrorAndNotify = (message) => {
       Swal.fire({
         icon: 'warning',
         title: 'Warning',
-        html: `Please fill in the required fields: <span style="color:red">${emptyFields.join('<span style="color:black"> &</span> ')}</span>`,
+        html: `${message}`,
       });
+    };
+
+    const validateField = (fieldName, label, regex, errorMessage) => {
+      if (!FormData2.socialSecurity[fieldName]) {
+        const requiredErrorMessage = `This <span style="color:red">${label}</span> is required`;
+        showErrorAndNotify(requiredErrorMessage);
+        return false;
+      } else if (regex && !regex.test(FormData2.socialSecurity[fieldName])) {
+        showErrorAndNotify(errorMessage);
+        return false;
+      }
+
+      return true;
+    };
+
+    const validateRequiredFields = () => {
+      const requiredFields = [
+        { fieldName: 'paymentType', label: 'Payment Type', regex: null, errorMessage: null }
+      ];
+
+      if (FormData2.socialSecurity.paymentType === 'selfPay') {
+        requiredFields.push(
+          { fieldName: 'self_type', label: 'Type', regex: null, errorMessage: null },
+          { fieldName: 'self_textDetails', label: 'Details', regex: null, errorMessage: null },
+          { fieldName: 'self_companyName', label: 'Company Name', regex: null, errorMessage: null },
+          { fieldName: 'self_registrationNumber', label: 'Registration Number', regex: null, errorMessage: null },
+          { fieldName: 'self_registrationAddress', label: 'Registration Address', regex: null, errorMessage: null }
+        );
+      } else if (FormData2.socialSecurity.paymentType === 'companyPay') {
+        requiredFields.push(
+          { fieldName: 'company_joiningDate', label: 'Joining Date', regex: null, errorMessage: null },
+          { fieldName: 'company_hospital', label: 'Hospital', regex: null, errorMessage: null }
+        );
+
+        if (FormData2.socialSecurity.company_hospital === 'hospitalMember') {
+          requiredFields.push(
+            { fieldName: 'company_hospitalMember_1', label: 'Hospital Member', regex: null, errorMessage: null }
+          );
+        } else if (FormData2.socialSecurity.company_hospital === 'changeHospital') {
+          requiredFields.push(
+            { fieldName: 'company_changeHospita_1', label: 'Change Hospital', regex: null, errorMessage: null },
+            // { fieldName: 'company_changeHospita_2', label: 'Change Hospital', regex: null, errorMessage: null },
+            // { fieldName: 'company_changeHospita_3', label: 'Change Hospital', regex: null, errorMessage: null }
+          );
+        }
+
+        requiredFields.push(
+          { fieldName: 'company_incomeBeforeJoining', label: 'Income Before Joining', regex: null, errorMessage: null },
+          { fieldName: 'company_withholdingTaxBeforeJoining', label: 'Withholding Tax Before Joining', regex: null, errorMessage: null },
+          // { fieldName: 'company_marriedFullName', label: 'Married Full Name', regex: null, errorMessage: null },
+          { fieldName: 'company_parents', label: 'Parents', regex: null, errorMessage: null },
+          // { fieldName: 'company_lifeInsurance', label: 'Life Insurance', regex: null, errorMessage: null },
+          // { fieldName: 'company_healthInsurance', label: 'Health Insurance', regex: null, errorMessage: null },
+          // { fieldName: 'company_parentsLifeInsurance', label: 'Parents Life Insurance', regex: null, errorMessage: null },
+          // { fieldName: 'company_annuityInsurance', label: 'Annuity Insurance', regex: null, errorMessage: null },
+          // { fieldName: 'company_rmf', label: 'RMF', regex: null, errorMessage: null },
+          // { fieldName: 'company_ssf', label: 'SSF', regex: null, errorMessage: null },
+          // { fieldName: 'company_providentFund', label: 'Provident Fund', regex: null, errorMessage: null },
+          // { fieldName: 'company_donation1', label: 'Donation', regex: null, errorMessage: null },
+          // { fieldName: 'company_donation2', label: 'Donation', regex: null, errorMessage: null },
+          // { fieldName: 'company_donation3', label: 'Donation', regex: null, errorMessage: null }
+        );
+      }
+
+
+      // Validate the required fields
+      for (const { fieldName, label, regex, errorMessage } of requiredFields) {
+        if (!validateField(fieldName, label, regex, errorMessage)) {
+          return false;
+        }
+      }
+
+      return true;
+    };
+
+
+    const isValid = validateRequiredFields();
+    if (!isValid) {
       return;
     }
-   
-    setFormData({ ...FormData, ...FormData2 });
+
+
+    setFormData({ ...formData, ...FormData2 });
     onNext();
   };
 
@@ -210,7 +280,7 @@ const Employee3 = ({ onNext, FormData, setFormData }) => {
     });
   };
 
-  
+
   return (
     <div>
       <br />
@@ -219,7 +289,7 @@ const Employee3 = ({ onNext, FormData, setFormData }) => {
         <h5 className={`text-start ${styles.custom_form_group}`}>Social security fund detail</h5>
         <h5 className={`text-start ${styles.custom_form_group}`}>SSF Detail</h5>
 
-        <p className={`text-start ${styles.custom_form_group} mt-4`}>Payment by</p>
+        <p className={`text-start ${styles.custom_form_group} mt-4`}>Payment by<span className="text-danger"> *</span></p>
         <Form.Group className={styles.custom_form_group} controlId="paymentType">
           <Form.Check
             inline
@@ -244,7 +314,7 @@ const Employee3 = ({ onNext, FormData, setFormData }) => {
         {FormData2.socialSecurity && FormData2.socialSecurity.paymentType === "selfPay" &&
           <>
             <Form.Group className={styles.custom_form_group} controlId="self_type">
-              <Form.Label>Type</Form.Label>
+              <Form.Label>Type<span className="text-danger"> *</span></Form.Label>
               <Form.Control
                 as="select"
                 name="self_type"
@@ -257,7 +327,7 @@ const Employee3 = ({ onNext, FormData, setFormData }) => {
               </Form.Control>
             </Form.Group>
 
-            <h5 className={`text-start ${styles.custom_form_group} mt-4`}>Tax Detail</h5>
+            <h5 className={`text-start ${styles.custom_form_group} mt-4`}>Tax Detail<span className="text-danger"> *</span></h5>
             <p className={`text-start ${styles.custom_form_group}`}>For non-ssf payment. your tax will be deducted with below chosen type</p>
             <Form.Group className={styles.custom_form_group} controlId="self_textDetails">
               <Form.Check
@@ -289,7 +359,7 @@ const Employee3 = ({ onNext, FormData, setFormData }) => {
             </Form.Group>
 
             <Form.Group className={styles.custom_form_group} controlId="self_companyName">
-              <Form.Label>Company Name</Form.Label>
+              <Form.Label>Company Name<span className="text-danger"> *</span></Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Company Name"
@@ -300,7 +370,7 @@ const Employee3 = ({ onNext, FormData, setFormData }) => {
             </Form.Group>
 
             <Form.Group className={styles.custom_form_group} controlId="self_registrationNumber">
-              <Form.Label>Registration Number</Form.Label>
+              <Form.Label>Registration Number<span className="text-danger"> *</span></Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Registration Number"
@@ -311,7 +381,7 @@ const Employee3 = ({ onNext, FormData, setFormData }) => {
             </Form.Group>
 
             <Form.Group className={styles.custom_form_group} controlId="self_registrationAddress">
-              <Form.Label>Registration Address</Form.Label>
+              <Form.Label>Registration Address<span className="text-danger"> *</span></Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Registration Address"
@@ -327,7 +397,7 @@ const Employee3 = ({ onNext, FormData, setFormData }) => {
         {FormData2.socialSecurity && FormData2.socialSecurity.paymentType === "companyPay" &&
           <>
             <Form.Group className={styles.custom_form_group} controlId="company_joiningDate">
-              <Form.Label>Joining Date</Form.Label>
+              <Form.Label>Joining Date<span className="text-danger"> *</span></Form.Label>
               <Form.Control
                 type="date"
                 name="company_joiningDate"
@@ -336,7 +406,7 @@ const Employee3 = ({ onNext, FormData, setFormData }) => {
               />
             </Form.Group>
 
-            <p className={styles.custom_form_group}>Hospital</p>
+            <p className={styles.custom_form_group}>Hospital<span className="text-danger"> *</span></p>
 
             <Form.Group className={styles.custom_form_group} controlId="company_hospital">
               <Form.Check
@@ -410,7 +480,7 @@ const Employee3 = ({ onNext, FormData, setFormData }) => {
             <h5 className={`text-start ${styles.custom_form_group} mt-5`}>TAX Detail</h5>
 
             <Form.Group className={styles.custom_form_group} controlId="company_incomeBeforeJoining">
-              <Form.Label>Income before joining</Form.Label>
+              <Form.Label>Income before joining<span className="text-danger"> *</span></Form.Label>
               <Form.Control
                 type="number"
                 placeholder="Income before joining"
@@ -421,7 +491,7 @@ const Employee3 = ({ onNext, FormData, setFormData }) => {
             </Form.Group>
 
             <Form.Group className={styles.custom_form_group} controlId="company_withholdingTaxBeforeJoining">
-              <Form.Label>Withholding tax before joining</Form.Label>
+              <Form.Label>Withholding tax before joining<span className="text-danger"> *</span></Form.Label>
               <Form.Control
                 type="number"
                 placeholder="Withholding tax before joining"
@@ -536,10 +606,10 @@ const Employee3 = ({ onNext, FormData, setFormData }) => {
 
             <Form.Group className={styles.custom_form_group} controlId="company_parents">
               <Form.Label>Parents<span className="text-danger"> *</span></Form.Label> <br />
-              <Form.Check inline label="Father" type="radio" name="company_parents" value={"Father"}  onChange={handleCheckpaymentTypeChange}/>
-              <Form.Check inline label="Mother" type="radio" name="company_parents" value={"Mother"}  onChange={handleCheckpaymentTypeChange}/>
-              <Form.Check inline label="Father in law" type="radio" name="company_parents" value={"Father in law"}  onChange={handleCheckpaymentTypeChange}/>
-              <Form.Check inline label="Mother in law" type="radio" name="company_parents" value={"Mother in law"}  onChange={handleCheckpaymentTypeChange}/>
+              <Form.Check inline label="Father" type="radio" name="company_parents" value={"Father"} onChange={handleCheckpaymentTypeChange} />
+              <Form.Check inline label="Mother" type="radio" name="company_parents" value={"Mother"} onChange={handleCheckpaymentTypeChange} />
+              <Form.Check inline label="Father in law" type="radio" name="company_parents" value={"Father in law"} onChange={handleCheckpaymentTypeChange} />
+              <Form.Check inline label="Mother in law" type="radio" name="company_parents" value={"Mother in law"} onChange={handleCheckpaymentTypeChange} />
             </Form.Group>
 
             <Form.Group className={styles.custom_form_group} controlId="company_disabledPerson">
