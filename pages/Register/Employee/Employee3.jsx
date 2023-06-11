@@ -16,7 +16,7 @@ const Employee3 = ({ onNext, formData, setFormData }) => {
       self_registrationNumber: '',
       self_registrationAddress: '',
 
-      company_joiningDate: '',
+      company_joiningDate: null,
       company_hospital: '',
       company_hospitalMember_1: '',
       company_changeHospita_1: '',
