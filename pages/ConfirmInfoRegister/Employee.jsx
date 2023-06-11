@@ -45,6 +45,7 @@ const ConfirmInfoRegisterEmployee = ({ formData }) => {
         const data = new FormData();
         // Append form data
         // Personal Details
+        data.append('username' , formData.username);
         data.append('prefix', formData.prefix);
         data.append('fullNameThai', formData.fullNameThai);
         data.append('fullNameEng', formData.fullNameEng);
@@ -85,9 +86,9 @@ const ConfirmInfoRegisterEmployee = ({ formData }) => {
           data.append('company_withholdingTaxBeforeJoining', formData.socialSecurity.company_withholdingTaxBeforeJoining);
           data.append('company_marriedFullName', formData.socialSecurity.company_marriedFullName);
           data.append('company_marriedIdNumber', formData.socialSecurity.company_marriedIdNumber);
-          data.append('company_children', formData.socialSecurity.company_children[0].name, formData.socialSecurity.company_children[0].bornAfterYear);
-          data.append('company_children', formData.socialSecurity.company_children[1].name, formData.socialSecurity.company_children[1].bornAfterYear);
-          data.append('company_children', formData.socialSecurity.company_children[2].name, formData.socialSecurity.company_children[2].bornAfterYear);
+          data.append('company_children1', formData.socialSecurity.company_children[0].name, formData.socialSecurity.company_children[0].bornAfterYear);
+          data.append('company_children2', formData.socialSecurity.company_children[1].name, formData.socialSecurity.company_children[1].bornAfterYear);
+          data.append('company_children3', formData.socialSecurity.company_children[2].name, formData.socialSecurity.company_children[2].bornAfterYear);
           data.append('company_parents', formData.socialSecurity.company_parents);
           data.append('company_disabledPerson', formData.socialSecurity.company_disabledPerson);
           data.append('company_lifeInsurance', formData.socialSecurity.company_lifeInsurance);
@@ -113,8 +114,7 @@ const ConfirmInfoRegisterEmployee = ({ formData }) => {
         data.append('bankBook', formData.bankBook);
         // Append other files
 
-        axios
-          .post({
+        axios({
             method: 'post',
             url: '/api/employee/register',
             data,
