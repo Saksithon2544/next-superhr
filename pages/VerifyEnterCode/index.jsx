@@ -21,7 +21,7 @@ const VerifyEnterCode = () => {
     try {
       const { code: sentCode, email, username } = router.query;
 
-      const response = await axios.post(`/api/verifycode`, { code: sentCode, codeValue: codeValue, email });
+      const response = await axios.post(`/api/verifycode`, { code: sentCode, codeValue: codeValue, email ,username});
 
       console.log(response.data);
 

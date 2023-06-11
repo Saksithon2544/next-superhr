@@ -1,18 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import Swal from 'sweetalert2';
+import { useRouter } from 'next/router';
 
 // CSS
 import styles from './RegisterJobSeeker.module.css';
 
 
 const Register2JobSeeker = ({ onNext, formData, setFormData }) => {
+  const router = useRouter();
+
   const [form2Data, setForm2Data] = useState({
     idAddress: '',
     currentAddress: '',
     email: '',
     phoneNumber: '',
   });
+
+  useEffect(() => {
+    setForm2Data({
+      ...form2Data,
+      email: router.query.email,
+    })
+  }, [])
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -105,7 +115,7 @@ const Register2JobSeeker = ({ onNext, formData, setFormData }) => {
             name="email"
             value={form2Data.email}
             onChange={handleChange}
-          // required
+            readOnly
           />
         </Form.Group>
 

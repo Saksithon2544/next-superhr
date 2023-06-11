@@ -57,7 +57,7 @@ const ConfirmInfoRegisterJobSeeker = ({ formData }) => {
                 data.append('nationality', formData.nationality);
                 data.append('idAddress', formData.idAddress);
                 data.append('currentAddress', formData.currentAddress);
-                data.append('email', formData.email);
+                // data.append('email', formData.email);
                 data.append('phoneNumber', formData.phoneNumber);
 
                 // Append education data

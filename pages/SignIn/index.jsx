@@ -29,10 +29,12 @@ const SignIn = () => {
         password,
       });
 
+      const data = await response.data;
+
       
       if (response.status === 200) {
-        localStorage.setItem('token', response.data.token);
-        localStorage.setItem('user', JSON.stringify(response.data.user));
+        localStorage.setItem('token',data.token);
+        localStorage.setItem('user', JSON.stringify(data));
         Swal.fire({
           icon: 'success',
           title: 'Success',
@@ -42,10 +44,27 @@ const SignIn = () => {
       }
     }
     catch (error) {
+      const data = await error.response.data;
+
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: ''.concat (error.response.data.message),
+        text: ''.concat(data.message).concat(data.errCode),
+      }).then((result) => {
+        // if(data.errCode === "A002"){
+        //   router.push('/VerifyEmail?username='+username);
+        // } 
+        switch (data.errCode) {
+          case "A001":
+            router.push(`/WhoAreYou?username=${username}&email=${data.email}`);
+            break;
+          case "A002":
+            router.push('/VerifyEmail?username='+username);
+            break;
+        
+          default:
+            break;
+        }
       });
     }
 

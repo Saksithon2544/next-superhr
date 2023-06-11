@@ -56,7 +56,7 @@ const ConfirmInfoIntern = ({ formData }) => {
         data.append('nationality', formData.nationality);
         data.append('idAddress', formData.idAddress);
         data.append('currentAddress', formData.currentAddress);
-        data.append('email', formData.email);
+        // data.append('email', formData.email);
         data.append('phoneNumber', formData.phoneNumber);
         data.append('contactPerson', formData.contactPerson);
         data.append('contactPersonPhoneNumber', formData.contactPersonPhoneNumber);

@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import Swal from 'sweetalert2';
+import { useRouter } from 'next/router';
 
 // CSS
 import styles from './RegisterIntern.module.css';
 
 
 const Register2Intern = ({ onNext, formData, setFormData }) => {
+  const router = useRouter();
+
   const [form2Data, setForm2Data] = useState({
     idAddress: '',
     currentAddress: '',
@@ -15,6 +18,14 @@ const Register2Intern = ({ onNext, formData, setFormData }) => {
     contactPerson: '',
     contactPersonPhoneNumber: '',
   });
+
+  useEffect(() => {
+    setForm2Data({
+      ...form2Data,
+      email: router.query.email,
+    })
+  }, [])
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -108,6 +119,7 @@ const Register2Intern = ({ onNext, formData, setFormData }) => {
             name="email"
             value={form2Data.email}
             onChange={handleChange}
+            readOnly
           />
         </Form.Group>
 

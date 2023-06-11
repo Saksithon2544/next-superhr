@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import Swal from 'sweetalert2';
+import { useRouter } from 'next/router';
 
 // CSS
 import styles from './RegisterEmployee.module.css';
 
 const Employee2 = ({ onNext, formData, setFormData }) => {
+  const router = useRouter();
+
   const [form2Data, setForm2Data] = useState({
     idAddress: '',
     currentAddress: '',
@@ -15,9 +18,18 @@ const Employee2 = ({ onNext, formData, setFormData }) => {
     client: '',
   });
 
+  useEffect(() => {
+    setForm2Data({
+      ...form2Data,
+      email: router.query.email,
+    })
+  }, [])
+
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     const showErrorAndNotify = (message) => {
       Swal.fire({
         icon: 'warning',
@@ -63,7 +75,7 @@ const Employee2 = ({ onNext, formData, setFormData }) => {
     if (!isValid) {
       return;
     }
-    
+
     setFormData({ ...formData, ...form2Data });
     onNext();
   };
@@ -89,7 +101,7 @@ const Employee2 = ({ onNext, formData, setFormData }) => {
             name="idAddress"
             value={form2Data.idAddress}
             onChange={handleChange}
-            // required
+          // required
           />
         </Form.Group>
 
@@ -101,7 +113,7 @@ const Employee2 = ({ onNext, formData, setFormData }) => {
             name="currentAddress"
             value={form2Data.currentAddress}
             onChange={handleChange}
-            // required
+          // required
           />
         </Form.Group>
 
@@ -113,7 +125,7 @@ const Employee2 = ({ onNext, formData, setFormData }) => {
             name="email"
             value={form2Data.email}
             onChange={handleChange}
-            // required
+            readOnly
           />
         </Form.Group>
 
@@ -125,7 +137,7 @@ const Employee2 = ({ onNext, formData, setFormData }) => {
             name="phoneNumber"
             value={form2Data.phoneNumber}
             onChange={handleChange}
-            // required
+          // required
           />
         </Form.Group>
 
@@ -137,7 +149,7 @@ const Employee2 = ({ onNext, formData, setFormData }) => {
             name="position"
             value={form2Data.position}
             onChange={handleChange}
-            // required
+          // required
           />
         </Form.Group>
 
@@ -149,7 +161,7 @@ const Employee2 = ({ onNext, formData, setFormData }) => {
             name="client"
             value={form2Data.client}
             onChange={handleChange}
-            // required
+          // required
           />
         </Form.Group>
 
