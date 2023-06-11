@@ -4,7 +4,6 @@ import { FaEdit } from 'react-icons/fa';
 import { useRouter } from 'next/router';
 import Swal from 'sweetalert2';
 import axios from 'axios';
-// import { API_BASE_URL } from '../../config';
 
 // Images
 import ThankImage from '../../src/images/Thank.jpg';

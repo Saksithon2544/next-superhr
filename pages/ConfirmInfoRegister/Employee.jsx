@@ -4,7 +4,6 @@ import { FaEdit } from 'react-icons/fa';
 import { useRouter } from 'next/router';
 import Swal from 'sweetalert2';
 import axios from 'axios';
-// import { API_BASE_URL } from '../../config';
 
 // Images
 import ThankImage from '../../src/images/Thank.jpg';
@@ -45,6 +44,7 @@ const ConfirmInfoRegisterEmployee = ({ formData }) => {
       if (result.isConfirmed) {
         const data = new FormData();
         // Append form data
+        // Personal Details
         data.append('prefix', formData.prefix);
         data.append('fullNameThai', formData.fullNameThai);
         data.append('fullNameEng', formData.fullNameEng);
@@ -56,33 +56,70 @@ const ConfirmInfoRegisterEmployee = ({ formData }) => {
         data.append('nationality', formData.nationality);
         data.append('idAddress', formData.idAddress);
         data.append('currentAddress', formData.currentAddress);
-        data.append('email', formData.email);
+        // data.append('email', formData.email);
         data.append('phoneNumber', formData.phoneNumber);
-        data.append('contactPerson', formData.contactPerson);
-        data.append('contactPersonPhoneNumber', formData.contactPersonPhoneNumber);
-        data.append('university', formData.university);
-        data.append('educationLevel', formData.educationLevel);
-        data.append('major', formData.major);
-        data.append('field', formData.field);
-        data.append('GPA', formData.GPA);
         data.append('position', formData.position);
-        data.append('internshipPeriod', formData.internshipPeriod);
-        data.append('applicationReason', formData.applicationReason);
-        // Append other form fields
+        data.append('client', formData.client);
 
+        // Social security fund detail
+        if (formData.socialSecurity.paymentType === 'selfPay') {
+          data.append('paymentType', formData.socialSecurity.paymentType);
+          data.append('self_type', formData.socialSecurity.self_type);
+          data.append('self_textDetails', formData.socialSecurity.self_textDetails);
+          data.append('self_companyName', formData.socialSecurity.self_companyName);
+          data.append('self_registrationNumber', formData.socialSecurity.self_registrationNumber);
+          data.append('self_registrationAddress', formData.socialSecurity.self_registrationAddress);
+        } else if (formData.socialSecurity.paymentType === 'companyPay') {
+          data.append('paymentType', formData.socialSecurity.paymentType);
+          data.append('company_joiningDate', formData.socialSecurity.company_joiningDate);
+
+          if (formData.socialSecurity.company_hospital === 'hospitalMember') {
+            data.append('company_hospitalMember_1', formData.socialSecurity.company_hospitalMember_1);
+          } else if (formData.socialSecurity.company_hospital === 'changeHospital') {
+            data.append('company_changeHospita_1', formData.socialSecurity.company_changeHospita_1);
+            data.append('company_changeHospita_2', formData.socialSecurity.company_changeHospita_2);
+            data.append('company_changeHospita_3', formData.socialSecurity.company_changeHospita_3);
+          }
+
+          data.append('company_incomeBeforeJoining', formData.socialSecurity.company_incomeBeforeJoining);
+          data.append('company_withholdingTaxBeforeJoining', formData.socialSecurity.company_withholdingTaxBeforeJoining);
+          data.append('company_marriedFullName', formData.socialSecurity.company_marriedFullName);
+          data.append('company_marriedIdNumber', formData.socialSecurity.company_marriedIdNumber);
+          data.append('company_children', formData.socialSecurity.company_children[0].name, formData.socialSecurity.company_children[0].bornAfterYear);
+          data.append('company_children', formData.socialSecurity.company_children[1].name, formData.socialSecurity.company_children[1].bornAfterYear);
+          data.append('company_children', formData.socialSecurity.company_children[2].name, formData.socialSecurity.company_children[2].bornAfterYear);
+          data.append('company_parents', formData.socialSecurity.company_parents);
+          data.append('company_disabledPerson', formData.socialSecurity.company_disabledPerson);
+          data.append('company_lifeInsurance', formData.socialSecurity.company_lifeInsurance);
+          data.append('company_healthInsurance', formData.socialSecurity.company_healthInsurance);
+          data.append('company_parentsLifeInsurance', formData.socialSecurity.company_parentsLifeInsurance);
+          data.append('company_annuityInsurance', formData.socialSecurity.company_annuityInsurance);
+          data.append('company_rmf', formData.socialSecurity.company_rmf);
+          data.append('company_ssf', formData.socialSecurity.company_ssf);
+          data.append('company_providentFund', formData.socialSecurity.company_providentFund);
+          data.append('company_donation1', formData.socialSecurity.company_donation1);
+          data.append('company_donation2', formData.socialSecurity.company_donation2);
+          data.append('company_donation3', formData.socialSecurity.company_donation3);
+        }
 
         // Append files
         data.append('resumeCv', formData.resumeCv);
-        data.append('coverLetter', formData.coverLetter);
         data.append('transcript', formData.transcript);
         data.append('certificate', formData.certificate);
         data.append('houseRegistration', formData.houseRegistration);
         data.append('idCard', formData.idCard);
         data.append('photoPersonal', formData.photoPersonal);
+        data.append('photoIdCard', formData.photoIdCard);
+        data.append('bankBook', formData.bankBook);
         // Append other files
 
         axios
-          .post(`${API_BASE_URL}/api/register_intern`, data)
+          .post({
+            method: 'post',
+            url: '/api/employee/register',
+            data,
+            headers: { 'Content-Type': 'multipart/form-data' },
+          })
           .then((response) => {
             Swal.fire({
               imageUrl: ThankImage.src,
@@ -226,7 +263,7 @@ const ConfirmInfoRegisterEmployee = ({ formData }) => {
                 {formData.socialSecurity.company_hospital === 'hospitalMember' &&
                   <>
                     <p>
-                      <b>Member with:</b> {formData.socialSecurity. company_hospitalMember_1}
+                      <b>Member with:</b> {formData.socialSecurity.company_hospitalMember_1}
                     </p>
                   </>
                 }
@@ -237,13 +274,13 @@ const ConfirmInfoRegisterEmployee = ({ formData }) => {
                       <b>Change Hospital/Non-member</b>
                     </p>
                     <p>
-                      <b>1.</b> {formData.socialSecurity. company_changeHospita_1}
+                      <b>1.</b> {formData.socialSecurity.company_changeHospita_1}
                     </p>
                     <p>
-                      <b>2.</b> {formData.socialSecurity. company_changeHospita_2}
+                      <b>2.</b> {formData.socialSecurity.company_changeHospita_2}
                     </p>
                     <p>
-                      <b>3.</b> {formData.socialSecurity. company_changeHospita_3}
+                      <b>3.</b> {formData.socialSecurity.company_changeHospita_3}
                     </p>
                   </>
                 }
