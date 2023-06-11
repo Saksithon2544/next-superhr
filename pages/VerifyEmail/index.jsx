@@ -12,6 +12,7 @@ import styles from './VerifyEmail.module.css';
 
 const VerifyEmail = () => {
   const [email, setEmail] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   console.log(router.query);
 
@@ -19,8 +20,10 @@ const VerifyEmail = () => {
     event.preventDefault();
 
     try {
+      setIsLoading(true); // Start loading
+
       // Send a request to the server to send the verification code
-      const response = await axios.post(`/api/verificationcode/send-verification-code`, { email }); 
+      const response = await axios.post(`/api/verificationcode/send-verification-code`, { email });
 
       if (response.status === 200) {
         const { code } = response.data;
@@ -28,9 +31,16 @@ const VerifyEmail = () => {
         // Redirect to the verify-enter-code page with email and code as parameters
         router.push({
           pathname: '/VerifyEnterCode',
-          query: { username:router.query.username , email, code },
+          query: { username: router.query.username, email, code },
         });
       }
+
+      Swal.fire({
+        title: 'Success',
+        // text: 'Verification code sent successfully.',
+        icon: 'success',
+        confirmButtonColor: '#0000FF',
+      });
     } catch (error) {
       console.log(error);
       Swal.fire({
@@ -39,6 +49,8 @@ const VerifyEmail = () => {
         icon: 'error',
         confirmButtonColor: '#0000FF',
       });
+    } finally {
+      setIsLoading(false); // Stop loading
     }
   };
 
@@ -68,8 +80,8 @@ const VerifyEmail = () => {
             </Form.Group>
 
             <br />
-            <Button variant="primary" type="submit" className="w-100 mb-3">
-              Send
+            <Button variant="primary" type="submit" className="w-100 mb-3" disabled={isLoading}>
+              {isLoading ? 'Loading...' : 'Send'}
             </Button>
           </Form>
         </Col>
