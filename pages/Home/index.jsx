@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Modal, Button, Row, Col, Card, Form } from 'react-bootstrap';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
@@ -44,7 +44,18 @@ function MydModalWithGrid(props) {
 
 const Home = () => {
   const [modalShow, setModalShow] = useState(false);
+  const [user, setUser] = useState(null); // เพิ่ม state สำหรับเก็บข้อมูลผู้ใช้
 
+  useEffect(() => {
+    // ตรวจสอบว่ามีข้อมูลผู้ใช้ใน localStorage หรือไม่
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      const parsedUser = JSON.parse(storedUser);
+      setUser(parsedUser);
+    }
+  }, []);
+
+  // console.log(user);
 
   return (
     <>
@@ -133,6 +144,14 @@ const Home = () => {
             </Card>
           </Col>
         </Row>
+
+        {user && (
+          <div className="text-center mt-5">
+            <h4>Welcome, {user.username}!</h4>
+            {/* แสดงข้อมูลเพิ่มเติมของผู้ใช้ */}
+            <p>Email: {user.email}</p>
+          </div>
+        )}
       </Container>
     </>
   );

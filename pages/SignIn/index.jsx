@@ -51,9 +51,6 @@ const SignIn = () => {
         title: 'Oops...',
         text: ''.concat(data.message).concat(data.errCode),
       }).then((result) => {
-        // if(data.errCode === "A002"){
-        //   router.push('/VerifyEmail?username='+username);
-        // } 
         switch (data.errCode) {
           case "A001":
             router.push(`/WhoAreYou?username=${username}&email=${data.email}`);
