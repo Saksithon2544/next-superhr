@@ -86,9 +86,9 @@ const ConfirmInfoRegisterEmployee = ({ formData }) => {
           data.append('company_withholdingTaxBeforeJoining', formData.socialSecurity.company_withholdingTaxBeforeJoining);
           data.append('company_marriedFullName', formData.socialSecurity.company_marriedFullName);
           data.append('company_marriedIdNumber', formData.socialSecurity.company_marriedIdNumber);
-          data.append('company_children1', formData.socialSecurity.company_children[0].name, formData.socialSecurity.company_children[0].bornAfterYear);
-          data.append('company_children2', formData.socialSecurity.company_children[1].name, formData.socialSecurity.company_children[1].bornAfterYear);
-          data.append('company_children3', formData.socialSecurity.company_children[2].name, formData.socialSecurity.company_children[2].bornAfterYear);
+          data.append('company_children', formData.socialSecurity.company_children[0].name, formData.socialSecurity.company_children[0].bornAfterYear);
+          data.append('company_children', formData.socialSecurity.company_children[1].name, formData.socialSecurity.company_children[1].bornAfterYear);
+          data.append('company_children', formData.socialSecurity.company_children[2].name, formData.socialSecurity.company_children[2].bornAfterYear);
           data.append('company_parents', formData.socialSecurity.company_parents);
           data.append('company_disabledPerson', formData.socialSecurity.company_disabledPerson);
           data.append('company_lifeInsurance', formData.socialSecurity.company_lifeInsurance);
