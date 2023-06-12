@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
+import Swal from 'sweetalert2';
 import { Container, Modal, Button, Row, Col, Card, Form } from 'react-bootstrap';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
@@ -42,9 +44,12 @@ function MydModalWithGrid(props) {
   );
 }
 
+
 const Home = () => {
   const [modalShow, setModalShow] = useState(false);
   const [user, setUser] = useState(null); // เพิ่ม state สำหรับเก็บข้อมูลผู้ใช้
+
+  const router = useRouter();
 
   useEffect(() => {
     // ตรวจสอบว่ามีข้อมูลผู้ใช้ใน localStorage หรือไม่
@@ -55,7 +60,26 @@ const Home = () => {
     }
   }, []);
 
-  // console.log(user);
+  // สร้าง function สำหรับการ logout
+  const handleLogout = () => {
+    // Confirm ก่อน logout
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'Do you want to logout?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#0000FF',
+      confirmButtonText: 'Yes',
+      cancelButtonColor: '#FF0000',
+      cancelButtonText: 'No'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        localStorage.removeItem('user');
+        setUser(null);
+        router.push('/SignIn');
+      }
+    });
+  };
 
   return (
     <>
@@ -150,6 +174,7 @@ const Home = () => {
             <h4>Welcome, {user.username}!</h4>
             {/* แสดงข้อมูลเพิ่มเติมของผู้ใช้ */}
             <p>Email: {user.email}</p>
+            <button onClick={handleLogout}>Logout</button>
           </div>
         )}
       </Container>
